@@ -1,7 +1,6 @@
 package lowe.groupproject;
 /*
-Put header here
-
+Luigi Poker
 Gavin
  */
 
