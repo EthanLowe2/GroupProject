@@ -43,6 +43,7 @@ public class DuckController implements Initializable {
     int DuckX;
     int DuckY;
     boolean Side;
+    //idk what is going on
 
     void timer() {
         int play = Integer.parseInt(lblTimer.getText()) + 1;
