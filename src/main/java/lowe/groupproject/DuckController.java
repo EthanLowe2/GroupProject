@@ -37,6 +37,7 @@ public class DuckController implements Initializable {
     Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
     Timeline duckmove = new Timeline(new KeyFrame(Duration.seconds(1), ae -> pickDuck()));
+
     boolean Running = false;
     int points;
     int Bullets = 5;
@@ -60,7 +61,7 @@ public class DuckController implements Initializable {
         count.setCycleCount(Timeline.INDEFINITE);
         count.play();
     }
-
+    
     void CountDown() {
         if (lblcount.getText().equals("")) {
             lblcount.setText("3");
@@ -84,26 +85,26 @@ public class DuckController implements Initializable {
     void btnDuck(ActionEvent event) {
        pickDuck();
     }
-
+    
     void pickDuck() {
         Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
         if (Duck == 1 && Duck1.getTranslateX() == 0) {
-            ducks[0]= new duckMove(Duck1, false);
+            ducks[0]= new duckMove(Duck1, false,wallDown,wallLeft,wallRight,wallUp);
             ducks[0].start();
         }if (Duck == 2 && Duck2.getTranslateX() == 0) {
-            ducks[1]= new duckMove(Duck2, false);
+            ducks[1]= new duckMove(Duck2, false,wallDown,wallLeft,wallRight,wallUp);
             ducks[1].start();
         } if (Duck == 3 && Duck3.getTranslateX() == 0) {
-            ducks[2]= new duckMove(Duck3, false);
+            ducks[2]= new duckMove(Duck3, false,wallDown,wallLeft,wallRight,wallUp);
             ducks[2].start();
         }if (Duck == 4 && Duck4.getTranslateX() == 0) {
-            ducks[3]= new duckMove(Duck4, true);
+            ducks[3]= new duckMove(Duck4, true,wallDown,wallLeft,wallRight,wallUp);
             ducks[3].start();
         }if (Duck == 5 && Duck5.getTranslateX() == 0) {
-            ducks[4]= new duckMove(Duck5, true);
+            ducks[4]= new duckMove(Duck5, true,wallDown,wallLeft,wallRight,wallUp);
             ducks[4].start();
         }if (Duck == 6 && Duck6.getTranslateX() == 0) {
-            ducks[5]= new duckMove(Duck6, true);
+            ducks[5]= new duckMove(Duck6, true,wallDown,wallLeft,wallRight,wallUp);
             ducks[5].start();
         }
     }
@@ -192,6 +193,7 @@ public class DuckController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       
     }
 
 }
