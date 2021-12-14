@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 /**
@@ -36,14 +37,16 @@ public class DuckController implements Initializable {
 
     Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
+    Timeline duckmove = new Timeline(new KeyFrame(Duration.seconds(1), ae -> pickDuck()));
     boolean Running = false;
     int points;
     int Bullets = 5;
     int Duck;
     int DuckX;
     int DuckY;
+    int Duckup;
     boolean Side;
-    //idk what is going on
+    boolean Up;
 
     void timer() {
         int play = Integer.parseInt(lblTimer.getText()) + 1;
@@ -77,6 +80,12 @@ public class DuckController implements Initializable {
         }
 
     }
+    @FXML
+    void btnDuck(ActionEvent event) {
+        duckmove.setCycleCount(Timeline.INDEFINITE);
+        duckmove.play();
+    }
+
     
     void pickDuck(){
     Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
@@ -85,13 +94,21 @@ public class DuckController implements Initializable {
     }if (Duck == 4 || Duck == 5 || Duck == 6){
         Side = false;
     }
+    Duckup = ThreadLocalRandom.current().nextInt(1, 2 + 1);
+    if (Duckup == 1){
+        Up = true;
+    }if (Duckup == 2){
+        Up = false;
+    }
     DuckX = ThreadLocalRandom.current().nextInt(1, 20 + 1);
     DuckY = ThreadLocalRandom.current().nextInt(1, 8 + 1);
-        placeDuck(Duck, DuckX, DuckY,Side);
+        placeDuck(Duck, DuckX, DuckY,Side,Up);
     }
-    void placeDuck(int duck,int x,int y,boolean side){
+    void placeDuck(int duck,int x,int y,boolean side,boolean up){
         
-        
+        if (up == false){
+            y = -y;
+        }
         if (side==false){
             x = -x;
         }if (duck == 1){
@@ -117,23 +134,23 @@ public class DuckController implements Initializable {
 
     @FXML
     void OnClick(MouseEvent event) {
-        ImageView img = (ImageView) event.getSource();
-        if (img.getAccessibleText().equals("1") || img.getAccessibleText().equals("2") || img.getAccessibleText().equals("3") || img.getAccessibleText().equals("4") || img.getAccessibleText().equals("5")) {
+        Shape pan = (Shape) event.getSource();
+        if (pan.getAccessibleText().equals("1") || pan.getAccessibleText().equals("2") || pan.getAccessibleText().equals("3") || pan.getAccessibleText().equals("4") || pan.getAccessibleText().equals("5")) {
             Reload();
             ShowBull();
         }
         if (Running == true) {
-            if (img.getAccessibleText().equals("red")) {
+            if (pan.getAccessibleText().equals("green")) {
                 points = points + 5;
                 Bullets--;
                 ShowBull();
             }
-            if (img.getAccessibleText().equals("yellow")) {
+            else if (pan.getAccessibleText().equals("yellow")) {
                 points = points + 3;
                 Bullets--;
                 ShowBull();
             }
-            if (img.getAccessibleText().equals("green")) {
+            else if (pan.getAccessibleText().equals("green")) {
                 points = points + 1;
                 Bullets--;
                 ShowBull();
