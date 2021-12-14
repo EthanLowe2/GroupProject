@@ -10,7 +10,7 @@
    <children>
       <ImageView fx:id="imgBetY" fitHeight="77.0" fitWidth="62.0" layoutX="7.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/Screen%20Shot%202021-12-10%20at%202.22.49%20PM.png" />
+            <Image url="@../Bet(O).png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgBoard" fitHeight="419.0" fitWidth="521.0" layoutX="-1.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
