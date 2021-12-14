@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package lowe.groupproject;
 
+package lowe.groupproject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
@@ -31,10 +27,13 @@ public class DuckController implements Initializable {
 
     @FXML
     private ImageView imgBullet1, imgBullet2, imgBullet3, imgBullet4, imgBullet5;
+
+    @FXML
+    private Pane Duck1, Duck2, Duck3, Duck4, Duck5, Duck6;
     
     @FXML
-    private Pane Duck1,Duck2,Duck3,Duck4,Duck5,Duck6;
-
+    private Line wallRight,wallDown,wallLeft,wallUp;
+    
     Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
     Timeline duckmove = new Timeline(new KeyFrame(Duration.seconds(1), ae -> pickDuck()));
@@ -42,12 +41,11 @@ public class DuckController implements Initializable {
     int points;
     int Bullets = 5;
     int Duck;
-    int DuckX;
-    int DuckY;
     int Duckup;
     boolean Side;
     boolean Up;
-
+    duckMove ducks[]=new duckMove[6];
+   
     void timer() {
         int play = Integer.parseInt(lblTimer.getText()) + 1;
         lblTimer.setText("" + play);
@@ -80,77 +78,53 @@ public class DuckController implements Initializable {
         }
 
     }
+ 
+
     @FXML
     void btnDuck(ActionEvent event) {
-        duckmove.setCycleCount(Timeline.INDEFINITE);
-        duckmove.play();
+       pickDuck();
     }
 
-    
-    void pickDuck(){
-    Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-    if (Duck == 1 || Duck == 2 || Duck == 3){
-        Side = true;
-    }if (Duck == 4 || Duck == 5 || Duck == 6){
-        Side = false;
-    }
-    Duckup = ThreadLocalRandom.current().nextInt(1, 2 + 1);
-    if (Duckup == 1){
-        Up = true;
-    }if (Duckup == 2){
-        Up = false;
-    }
-    DuckX = ThreadLocalRandom.current().nextInt(1, 20 + 1);
-    DuckY = ThreadLocalRandom.current().nextInt(1, 8 + 1);
-        placeDuck(Duck, DuckX, DuckY,Side,Up);
-    }
-    void placeDuck(int duck,int x,int y,boolean side,boolean up){
-        
-        if (up == false){
-            y = -y;
-        }
-        if (side==false){
-            x = -x;
-        }if (duck == 1){
-            Duck1.setTranslateX(Duck1.getTranslateX() + x);
-            Duck1.setTranslateY(Duck1.getTranslateY() + y);
-        }if (duck == 2){
-            Duck2.setTranslateX(Duck2.getTranslateX() + x);
-            Duck2.setTranslateY(Duck2.getTranslateY() + y);
-        }if (duck == 3){
-            Duck3.setTranslateX(Duck3.getTranslateX() + x);
-            Duck3.setTranslateY(Duck3.getTranslateY() + y);
-        }if (duck == 4){
-            Duck4.setTranslateX(Duck4.getTranslateX() + x);
-            Duck4.setTranslateY(Duck4.getTranslateY() + y);
-        }if (duck == 5){
-            Duck5.setTranslateX(Duck5.getTranslateX() + x);
-            Duck5.setTranslateY(Duck5.getTranslateY() + y);
-        }if (duck == 6){
-            Duck6.setTranslateX(Duck6.getTranslateX() + x);
-            Duck6.setTranslateY(Duck6.getTranslateY() + y);
+    void pickDuck() {
+        Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        if (Duck == 1 && Duck1.getTranslateX() == 0) {
+            ducks[0]= new duckMove(Duck1, false);
+            ducks[0].start();
+        }if (Duck == 2 && Duck2.getTranslateX() == 0) {
+            ducks[1]= new duckMove(Duck2, false);
+            ducks[1].start();
+        } if (Duck == 3 && Duck3.getTranslateX() == 0) {
+            ducks[2]= new duckMove(Duck3, false);
+            ducks[2].start();
+        }if (Duck == 4 && Duck4.getTranslateX() == 0) {
+            ducks[3]= new duckMove(Duck4, true);
+            ducks[3].start();
+        }if (Duck == 5 && Duck5.getTranslateX() == 0) {
+            ducks[4]= new duckMove(Duck5, true);
+            ducks[4].start();
+        }if (Duck == 6 && Duck6.getTranslateX() == 0) {
+            ducks[5]= new duckMove(Duck6, true);
+            ducks[5].start();
         }
     }
 
     @FXML
     void OnClick(MouseEvent event) {
-        Shape pan = (Shape) event.getSource();
-        if (pan.getAccessibleText().equals("1") || pan.getAccessibleText().equals("2") || pan.getAccessibleText().equals("3") || pan.getAccessibleText().equals("4") || pan.getAccessibleText().equals("5")) {
+        Shape poly = (Shape) event.getSource();
+        if (poly.getAccessibleText().equals("1")) {
             Reload();
             ShowBull();
         }
         if (Running == true) {
-            if (pan.getAccessibleText().equals("green")) {
+            if (poly.getAccessibleText().equals("green")) {
                 points = points + 5;
                 Bullets--;
                 ShowBull();
-            }
-            else if (pan.getAccessibleText().equals("yellow")) {
+            } else if (poly.getAccessibleText().equals("yellow")) {
                 points = points + 3;
                 Bullets--;
                 ShowBull();
-            }
-            else if (pan.getAccessibleText().equals("green")) {
+            } else if (poly.getAccessibleText().equals("green")) {
                 points = points + 1;
                 Bullets--;
                 ShowBull();
@@ -164,11 +138,12 @@ public class DuckController implements Initializable {
         oldpoints = oldpoints + value;
         lblPoints.setText("" + oldpoints);
     }
-    
+
     @FXML
     void btnReload(ActionEvent event) {
         Reload();
     }
+
     void Reload() {
         Bullets = 5;
         imgBullet1.setVisible(true);
