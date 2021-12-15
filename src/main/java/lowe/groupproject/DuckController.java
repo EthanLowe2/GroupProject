@@ -1,5 +1,5 @@
-
 package lowe.groupproject;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,13 +30,15 @@ public class DuckController implements Initializable {
 
     @FXML
     private Pane Duck1, Duck2, Duck3, Duck4, Duck5, Duck6;
+
+    @FXML
+    private Line wallRight, wallDown, wallLeft, wallUp;
     
     @FXML
-    private Line wallRight,wallDown,wallLeft,wallUp;
-    
+    private ImageView imgDuck1,imgDuck2,imgDuck3,imgDuck4,imgDuck5,imgDuck6;
+
     Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
-    Timeline duckmove = new Timeline(new KeyFrame(Duration.seconds(1), ae -> pickDuck()));
 
     boolean Running = false;
     int points;
@@ -45,8 +47,8 @@ public class DuckController implements Initializable {
     int Duckup;
     boolean Side;
     boolean Up;
-    duckMove ducks[]=new duckMove[6];
-   
+    duckMove ducks[] = new duckMove[6];
+
     void timer() {
         int play = Integer.parseInt(lblTimer.getText()) + 1;
         lblTimer.setText("" + play);
@@ -61,7 +63,7 @@ public class DuckController implements Initializable {
         count.setCycleCount(Timeline.INDEFINITE);
         count.play();
     }
-    
+
     void CountDown() {
         if (lblcount.getText().equals("")) {
             lblcount.setText("3");
@@ -79,32 +81,36 @@ public class DuckController implements Initializable {
         }
 
     }
- 
 
     @FXML
     void btnDuck(ActionEvent event) {
-       pickDuck();
+        pickDuck();
     }
-    
+
     void pickDuck() {
         Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
         if (Duck == 1 && Duck1.getTranslateX() == 0) {
-            ducks[0]= new duckMove(Duck1, false,wallDown,wallLeft,wallRight,wallUp);
+            ducks[0] = new duckMove(Duck1, false, wallDown, wallLeft, wallRight, wallUp,imgDuck1);
             ducks[0].start();
-        }if (Duck == 2 && Duck2.getTranslateX() == 0) {
-            ducks[1]= new duckMove(Duck2, false,wallDown,wallLeft,wallRight,wallUp);
+        }
+        if (Duck == 2 && Duck2.getTranslateX() == 0) {
+            ducks[1] = new duckMove(Duck2, false, wallDown, wallLeft, wallRight, wallUp,imgDuck2);
             ducks[1].start();
-        } if (Duck == 3 && Duck3.getTranslateX() == 0) {
-            ducks[2]= new duckMove(Duck3, false,wallDown,wallLeft,wallRight,wallUp);
+        }
+        if (Duck == 3 && Duck3.getTranslateX() == 0) {
+            ducks[2] = new duckMove(Duck3, false, wallDown, wallLeft, wallRight, wallUp,imgDuck3);
             ducks[2].start();
-        }if (Duck == 4 && Duck4.getTranslateX() == 0) {
-            ducks[3]= new duckMove(Duck4, true,wallDown,wallLeft,wallRight,wallUp);
+        }
+        if (Duck == 4 && Duck4.getTranslateX() == 0) {
+            ducks[3] = new duckMove(Duck4, true, wallDown, wallLeft, wallRight, wallUp,imgDuck4);
             ducks[3].start();
-        }if (Duck == 5 && Duck5.getTranslateX() == 0) {
-            ducks[4]= new duckMove(Duck5, true,wallDown,wallLeft,wallRight,wallUp);
+        }
+        if (Duck == 5 && Duck5.getTranslateX() == 0) {
+            ducks[4] = new duckMove(Duck5, true, wallDown, wallLeft, wallRight, wallUp,imgDuck5);
             ducks[4].start();
-        }if (Duck == 6 && Duck6.getTranslateX() == 0) {
-            ducks[5]= new duckMove(Duck6, true,wallDown,wallLeft,wallRight,wallUp);
+        }
+        if (Duck == 6 && Duck6.getTranslateX() == 0) {
+            ducks[5] = new duckMove(Duck6, true, wallDown, wallLeft, wallRight, wallUp,imgDuck6);
             ducks[5].start();
         }
     }
@@ -112,26 +118,41 @@ public class DuckController implements Initializable {
     @FXML
     void OnClick(MouseEvent event) {
         Shape poly = (Shape) event.getSource();
-        if (poly.getAccessibleText().equals("1")) {
+        int spot = Integer.parseInt(""+poly.getAccessibleText().charAt(0));
+        System.out.println(spot);
+        /* for (int i = 0; i < ducks.length; i++) {
+        if (ducks[i].inUse && poly.equals(ducks[i].polDock)) {
+        spot = i;
+        }
+        }*/
+        
+        if (poly.getAccessibleText().equals("B")) {
             Reload();
             ShowBull();
+
         }
-        if (Running == true) {
-            if (poly.getAccessibleText().equals("green")) {
+    //    if (Running == true) {
+      
+            if(Bullets != 0 && ducks[spot].inUse){
+            if ((""+poly.getAccessibleText().charAt(1)).equals("g")) {
                 points = points + 5;
                 Bullets--;
                 ShowBull();
-            } else if (poly.getAccessibleText().equals("yellow")) {
+                ducks[spot].shoot();
+            } else if (poly.getAccessibleText().equals("y")) {
                 points = points + 3;
                 Bullets--;
                 ShowBull();
-            } else if (poly.getAccessibleText().equals("green")) {
+                ducks[spot].shoot();
+            } else if (poly.getAccessibleText().equals("r")) {
                 points = points + 1;
                 Bullets--;
                 ShowBull();
+                ducks[spot].shoot();
+            }
             }
         }
-    }
+   // }
 
     void Points(int value) {
         int oldpoints;
@@ -192,8 +213,13 @@ public class DuckController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       
+        ducks[0] = new duckMove();
+        ducks[1] = new duckMove();
+        ducks[2] = new duckMove();
+        ducks[3] = new duckMove();
+        ducks[4] = new duckMove();
+        ducks[5] = new duckMove();
+
     }
 
 }
