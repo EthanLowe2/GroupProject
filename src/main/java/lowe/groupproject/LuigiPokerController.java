@@ -36,54 +36,17 @@ public class LuigiPokerController implements Initializable {
 
     int luigiHand, luigiSuit, luigiLowSuit; //Int of luigi's hand to compare to players
 
-    int luigiHighWeight, luigiLowWeight;
+    int luigiHighWeight, luigiLowWeight; //Weighting system used in luigi hand calculation
 
-    int tStarCount, tMarioCount, tLuigiCount, tFireFlowerCount, tMushroomCount, tCloudCount;
+    int tStarCount, tMarioCount, tLuigiCount, tFireFlowerCount, tMushroomCount, tCloudCount;//total card amounts in play
+
+    int junk;
+
+    int H = 0, L = 0; //ints for setting luigi Card images
 
     ImageView pCardImg[];
+    ImageView lCardImg[];
 
-    //ArrayList Deck = new ArrayList();
-
-    /*
-    void deckAdd() { //Card Deck
-        Deck.add("Cloud");
-        Deck.add("Cloud");
-        Deck.add("Cloud");
-        Deck.add("Cloud");
-        Deck.add("Cloud");
-        Deck.add("Cloud");
-        Deck.add("Mushroom");
-        Deck.add("Mushroom");
-        Deck.add("Mushroom");
-        Deck.add("Mushroom");
-        Deck.add("Mushroom");
-        Deck.add("Mushroom");
-        Deck.add("FireFlower");
-        Deck.add("FireFlower");
-        Deck.add("FireFlower");
-        Deck.add("FireFlower");
-        Deck.add("FireFlower");
-        Deck.add("FireFlower");
-        Deck.add("Luigi");
-        Deck.add("Luigi");
-        Deck.add("Luigi");
-        Deck.add("Luigi");
-        Deck.add("Luigi");
-        Deck.add("Luigi");
-        Deck.add("Mario");
-        Deck.add("Mario");
-        Deck.add("Mario");
-        Deck.add("Mario");
-        Deck.add("Mario");
-        Deck.add("Mario");
-        Deck.add("Star");
-        Deck.add("Star");
-        Deck.add("Star");
-        Deck.add("Star");
-        Deck.add("Star");
-        Deck.add("Star");
-    }
-     */
     void pCardRandomizer() { //Chooses Random cards for the player and assures no overlap
         PC[0] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
         PC[1] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
@@ -136,40 +99,68 @@ public class LuigiPokerController implements Initializable {
             luigiHighWeight = 5;
 
             luigiHighCalc();
+            for (H = 0; H < 5; H++) {
+                highWeightImgSet();
+            }
 
-        } else if (luigiHandCalc <= 95 && luigiHandCalc >= 86) { //Four kind, 10%
+        } else if (luigiHandCalc <= 95 && luigiHandCalc >= 89) { //Four kind, 7%
             luigiHand = 6;
             luigiHighWeight = 4;
 
             luigiHighCalc();
+            for (H = 0; H < 4; H++) {
+                highWeightImgSet();
+            }
+            ljunkRoll();
 
-        } else if (luigiHandCalc <= 85 && luigiHandCalc >= 71) { //Full house, 15%
+        } else if (luigiHandCalc <= 88 && luigiHandCalc >= 75) { //Full house, 13%
             luigiHand = 5; //point system for luigi's hand type to compare to players later
             luigiHighWeight = 3; //point system for luigi's high suit quantity to use for finding an available suit that has enough cards
             luigiLowWeight = 2;//point system for luigi's low suit quantity to use for finding an available suit that has enough cards
 
             luigiHighCalc();
             luigiLowCalc();
+            for (H = 0; H < 3; H++) {
+                highWeightImgSet();
+            }
+            for (L = 0; L < 2; L++) {
+                LowWeightImgSet();
+            }
 
-        } else if (luigiHandCalc <= 70 && luigiHandCalc >= 41) { //Three kind, 30%
+        } else if (luigiHandCalc <= 74 && luigiHandCalc >= 51) { //Three kind, 20%
             luigiHand = 4;
             luigiHighWeight = 3;
 
             luigiHighCalc();
+            for (H = 0; H < 3; H++) {
+                highWeightImgSet();
+            }
+            ljunkRoll();
 
-        } else if (luigiHandCalc <= 40 && luigiHandCalc >= 11) { //Two pairs, 30%
+        } else if (luigiHandCalc <= 50 && luigiHandCalc >= 21) { //Two pairs, 30%
             luigiHand = 3;
             luigiHighWeight = 2;
             luigiLowWeight = 2;
 
             luigiHighCalc();
             luigiLowCalc();
+            for (H = 0; H < 2; H++) {
+                highWeightImgSet();
+            }
+            for (L = 0; L < 2; L++) {
+                LowWeightImgSet();
+            }
+            ljunkRoll();
 
-        } else if (luigiHandCalc <= 10 && luigiHandCalc >= 1) { //One pair, 10%
+        } else if (luigiHandCalc <= 20 && luigiHandCalc >= 1) { //One pair, 20%
             luigiHand = 2;
             luigiHighWeight = 2;
 
             luigiHighCalc();
+            for (H = 0; H < 2; H++) {
+                highWeightImgSet();
+            }
+            ljunkRoll();
 
         }
     }
@@ -225,15 +216,75 @@ public class LuigiPokerController implements Initializable {
         }
     }
 
+    void highWeightImgSet() {
+        if (luigiSuit == 6) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/Star.png").toString()));
+        } else if (luigiSuit == 5) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/Mario.png").toString()));
+        } else if (luigiSuit == 4) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
+        } else if (luigiSuit == 3) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
+        } else if (luigiSuit == 2) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
+        } else if (luigiSuit == 1) {
+            lCardImg[H].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
+        }
+    }
+
+    void ljunkRoll() {
+
+        for (int J = 0; H + L + J < 5; J++) {
+            junk = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+            if (junk == 6 && (tStarCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Star.png").toString()));
+                tStarCount++;
+            } else if (junk == 5 && (tMarioCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mario.png").toString()));
+                tMarioCount++;
+            } else if (junk == 4 && (tLuigiCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
+                tLuigiCount++;
+            } else if (junk == 3 && (tFireFlowerCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
+                tFireFlowerCount++;
+            } else if (junk == 2 && (tMushroomCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
+                tMushroomCount++;
+            } else if (junk == 1 && (tCloudCount) < 6) {
+                lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
+                tCloudCount++;
+            }
+        }
+    }
+
+    void LowWeightImgSet() {
+        if (luigiLowSuit == 6) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/Star.png").toString()));
+        } else if (luigiLowSuit == 5) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/Mario.png").toString()));
+        } else if (luigiLowSuit == 4) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
+        } else if (luigiLowSuit == 3) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
+        } else if (luigiLowSuit == 2) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
+        } else if (luigiLowSuit == 1) {
+            lCardImg[H + L].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb
     ) {
         ImageView picArray[] = {imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5};//Image array
         pCardImg = picArray; //Transfer the array to top
+        ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
+        lCardImg = picArrayLuigi;
         //Opening ,method start
         pCardRandomizer();
         pSuitCount();
-
+        luigiHandRandomizer();
     }
 
 }
