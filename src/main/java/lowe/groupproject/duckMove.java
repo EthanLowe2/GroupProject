@@ -81,13 +81,13 @@ public class duckMove {
     }
 
     private void moveDuck() {
-        if (y == 6 && DuckCol <= 50 && DuckCol > 40) {
+        if (y == 9 && DuckCol <= 50 && DuckCol > 40) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckRFall.png").toString()));
         }
-        if (y == 6 && DuckCol <= 40 && DuckCol > 25) {
+        if (y == 9 && DuckCol <= 40 && DuckCol > 25) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckPFall.png").toString()));
         }
-        if (y == 6 && DuckCol <= 25 && DuckCol >= 0) {
+        if (y == 9 && DuckCol <= 25 && DuckCol >= 0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckFall.png").toString()));
         }
         pnlMove.setTranslateX(pnlMove.getTranslateX() + x);
@@ -145,7 +145,7 @@ public class duckMove {
         }
         duckmove.stop();
         duckmove.setDelay(Duration.seconds(1));
-        y = 6;
+        y = 9;
         duckmove.play();
     }
 
