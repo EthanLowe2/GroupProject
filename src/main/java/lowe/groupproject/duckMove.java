@@ -28,6 +28,8 @@ public class duckMove {
     private Polygon PolyDuck;
     private boolean side;
     public boolean inUse = false;
+    private int duckswitch;
+    private int duckswitchs;
     Timeline duckmove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveDuck()));
 
     public duckMove() {
@@ -35,8 +37,8 @@ public class duckMove {
     }
 
     public duckMove(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum) {
-        int DuckX = ThreadLocalRandom.current().nextInt(1, 12 + 1);
-        int DuckY = ThreadLocalRandom.current().nextInt(-8, -2 + 1);
+        int DuckX = ThreadLocalRandom.current().nextInt(5, 12 + 1);
+        int DuckY = ThreadLocalRandom.current().nextInt(-6, -2 + 1);
         x = DuckX;
         y = DuckY;
         imgDuck = TimgDuck;
@@ -81,14 +83,23 @@ public class duckMove {
     }
 
     private void moveDuck() {
-        if (y == 9 && DuckCol <= 50 && DuckCol > 40) {
+        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch %3==0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckRFall.png").toString()));
         }
-        if (y == 9 && DuckCol <= 40 && DuckCol > 25) {
+        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch %5==0) {
+            imgDuck.setImage(new Image(getClass().getResource("/DuckRFallO.png").toString()));
+        }
+        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch %3==0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckPFall.png").toString()));
         }
-        if (y == 9 && DuckCol <= 25 && DuckCol >= 0) {
+        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch %5==0) {
+            imgDuck.setImage(new Image(getClass().getResource("/DuckPFallO.png").toString()));
+        }
+        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch %3==0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckFall.png").toString()));
+        }
+        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch %5==0) {
+            imgDuck.setImage(new Image(getClass().getResource("/DuckFallO.png").toString()));
         }
         pnlMove.setTranslateX(pnlMove.getTranslateX() + x);
         pnlMove.setTranslateY(pnlMove.getTranslateY() + y);
@@ -124,6 +135,10 @@ public class duckMove {
             inUse = false;
             duckmove.stop();
         }
+        if (duckswitchs %2==0 ){
+        duckswitch++;
+    }
+    duckswitchs++;
     }
 
     public boolean collision(Pane block1, Line block2) {
