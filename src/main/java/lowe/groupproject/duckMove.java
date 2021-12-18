@@ -83,22 +83,22 @@ public class duckMove {
     }
 
     private void moveDuck() {
-        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch %3==0) {
+        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch % 2 == 0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckRFall.png").toString()));
         }
-        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch %5==0) {
+        if (y == 9 && DuckCol <= 50 && DuckCol > 40 && duckswitch % 2 == 1) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckRFallO.png").toString()));
         }
-        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch %3==0) {
+        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch % 2 == 0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckPFall.png").toString()));
         }
-        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch %5==0) {
+        if (y == 9 && DuckCol <= 40 && DuckCol > 25 && duckswitch % 2 == 1) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckPFallO.png").toString()));
         }
-        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch %3==0) {
+        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch % 2 == 0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckFall.png").toString()));
         }
-        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch %5==0) {
+        if (y == 9 && DuckCol <= 25 && DuckCol >= 0 && duckswitch % 2 == 1) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckFallO.png").toString()));
         }
         pnlMove.setTranslateX(pnlMove.getTranslateX() + x);
@@ -135,10 +135,10 @@ public class duckMove {
             inUse = false;
             duckmove.stop();
         }
-        if (duckswitchs %2==0 ){
-        duckswitch++;
-    }
-    duckswitchs++;
+        if (duckswitchs % 2 == 0) {
+            duckswitch++;
+        }
+        duckswitchs++;
     }
 
     public boolean collision(Pane block1, Line block2) {
