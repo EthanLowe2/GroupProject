@@ -13,7 +13,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
-public class duckMove {
+public class duck {
 
     private int x;
     private int y;
@@ -32,11 +32,11 @@ public class duckMove {
     private int duckswitchs;
     Timeline duckmove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveDuck()));
 
-    public duckMove() {
+    public duck() {
 
     }
 
-    public duckMove(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum) {
+    public duck(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum) {
         int DuckX = ThreadLocalRandom.current().nextInt(5, 12 + 1);
         int DuckY = ThreadLocalRandom.current().nextInt(-6, -2 + 1);
         x = DuckX;
