@@ -80,6 +80,7 @@ public class duck {
         if (DuckCol <= 25 && DuckCol >= 0) {
             PolyDuck.setAccessibleText(DuckNum + "g");
         }
+        pnlMove.setVisible(true);
     }
 
     private void moveDuck() {
@@ -110,6 +111,7 @@ public class duck {
             y = 0;
             inUse = false;
             duckmove.stop();
+            pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall2)) {
             pnlMove.setTranslateX(0);
@@ -118,6 +120,7 @@ public class duck {
             y = 0;
             inUse = false;
             duckmove.stop();
+            pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall3)) {
             pnlMove.setTranslateX(0);
@@ -126,6 +129,7 @@ public class duck {
             y = 0;
             inUse = false;
             duckmove.stop();
+            pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall4)) {
             pnlMove.setTranslateX(0);
@@ -134,6 +138,7 @@ public class duck {
             y = 0;
             inUse = false;
             duckmove.stop();
+            pnlMove.setVisible(false);
         }
         if (duckswitchs % 2 == 0) {
             duckswitch++;

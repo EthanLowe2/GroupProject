@@ -127,28 +127,39 @@ public class DuckController implements Initializable {
             ShowBull();
             return;
         }
-        //    if (Running == true) {
+            if (Running == true) {
         int spot = Integer.parseInt("" + poly.getAccessibleText().charAt(0));
         if (Bullets != 0 && ducks[spot].inUse) {
             if (("" + poly.getAccessibleText().charAt(1)).equals("g")) {
-                points = points + 5;
+                points = points + 1;
+                ShowPoints();
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
             } else if (("" + poly.getAccessibleText().charAt(1)).equals("y")) {
                 points = points + 3;
+                ShowPoints();
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
             } else if (("" + poly.getAccessibleText().charAt(1)).equals("r")) {
-                points = points + 1;
+                points = points + 5;
+                ShowPoints();
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
             }
         }
     }
-    // }
+     }
+    
+    @FXML
+    void MousePic(MouseEvent event) {
+             if (Running == true) {
+                Bullets--;
+                ShowBull();
+          }
+    }
 
     void Points(int value) {
         int oldpoints;
@@ -206,7 +217,11 @@ public class DuckController implements Initializable {
         }
 
     }
-
+    
+    void ShowPoints() {
+        lblPoints.setText(""+points);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ducks[0] = new duck();

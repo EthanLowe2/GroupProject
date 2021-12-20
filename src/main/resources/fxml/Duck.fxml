@@ -11,27 +11,43 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.DuckController">
+<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="964.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.DuckController">
    <children>
-      <Button layoutX="45.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnStart" text="Start" />
-      <Line fx:id="wallRight" endX="-100.8599853515625" endY="532.0" layoutX="1042.0" startX="-101.0" startY="3.292896270751953" />
-      <Line fx:id="wallDown" endX="839.5" endY="-0.5" layoutX="101.0" layoutY="532.0" startX="-100.0" />
-      <Label fx:id="lblcount" layoutX="281.0" layoutY="153.0" prefHeight="141.0" prefWidth="235.0">
+      <ImageView fitHeight="682.0" fitWidth="1040.0" layoutX="-59.0" layoutY="-149.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Sky.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="lblcount" layoutX="281.0" layoutY="153.0" onMouseClicked="#MousePic" prefHeight="141.0" prefWidth="235.0">
          <font>
             <Font size="96.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Label>
-      <Label fx:id="lblTimer" layoutX="293.0" layoutY="529.0" prefHeight="62.0" prefWidth="119.0" text="0">
+      <ImageView fitHeight="90.0" fitWidth="965.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../WoodT.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="85.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnStart" styleClass="bevel-grey" text="Start" />
+      <Line fx:id="wallRight" endX="-100.8599853515625" endY="532.0" layoutX="1064.0" startX="-101.0" startY="3.292896270751953" />
+      <Line fx:id="wallDown" endX="861.2928466796875" endY="0.70709228515625" layoutX="101.0" layoutY="532.0" startX="-100.0" />
+      <Label fx:id="lblTimer" layoutX="407.0" layoutY="545.0" prefHeight="62.0" prefWidth="75.0" text="0">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <Label fx:id="lblPoints" layoutX="188.0" layoutY="529.0" prefHeight="54.0" prefWidth="133.0" text="0">
+      <Label fx:id="lblPoints" layoutX="293.0" layoutY="545.0" prefHeight="62.0" prefWidth="75.0" text="0">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <Pane layoutX="757.0" layoutY="531.0" prefHeight="71.0" prefWidth="177.0">
+      <Pane layoutX="757.0" layoutY="545.0" prefHeight="63.0" prefWidth="177.0">
          <children>
             <ImageView fx:id="imgBullet1" fitHeight="51.0" fitWidth="31.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -65,114 +81,158 @@
             </Polygon>
          </children>
       </Pane>
-      <Button layoutX="563.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnReload" text="Reload" />
-      <Pane fx:id="Duck1" layoutX="-4.0" layoutY="253.0" prefHeight="79.0" prefWidth="102.0">
+      <Button layoutX="563.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnReload" styleClass="bevel-grey" text="Reload" />
+      <Button layoutX="171.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnDuck" styleClass="bevel-grey" text="Duck" />
+      <Line fx:id="wallLeft" endX="-101.0" endY="475.0" layoutX="100.0" layoutY="1.0" startX="-100.0" />
+      <Line fx:id="wallUp" endX="440.29290771484375" endY="-10.707107543945312" layoutX="501.0" layoutY="11.0" startX="-500.29290771484375" startY="-10.707107543945312" />
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="85.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="147.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="293.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="440.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="586.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="703.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="550.0" fitWidth="197.0" layoutX="807.0" layoutY="-17.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Pine2.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="530.0" fitWidth="158.0" layoutY="1.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Pine.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="259.0" fitWidth="880.0" layoutX="52.0" layoutY="1.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Cloud.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="810.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="815.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="-4.0" layoutY="476.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Grass3.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="Duck1" layoutX="-4.0" layoutY="253.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck1" accessibleText="g" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck1" accessibleText="g" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../GreenDuck.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck0" accessibleText="0g" fill="#1f93ff00" layoutX="49.0" layoutY="49.0" onMouseClicked="#OnClick" points="-13.707103729248047, -32.70710754394531, -34.5, -26.0, -34.5, -5.0, -34.5, 12.0, 5.292896270751953, 21.0, 44.29289245605469, -16.957107543945312, 44.29290771484375, -32.70709228515625, 20.042892456054688, -41.0" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Pane fx:id="Duck2" layoutX="-3.0" layoutY="322.0" prefHeight="79.0" prefWidth="102.0">
+      <Pane fx:id="Duck2" layoutX="-3.0" layoutY="322.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck2" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck2" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../GreenDuck.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck1" accessibleText="1g" fill="#1f93ff00" layoutX="47.0" layoutY="47.0" onMouseClicked="#OnClick" points="-7.499996185302734, -34.45709228515625, -21.707103729248047, -28.5, -37.70710372924805, -23.75, -42.999996185302734, -12.25, -31.207103729248047, 15.04290771484375, 4.042896270751953, 21.0, 43.79289245605469, -15.75, 38.29289245605469, -34.45709228515625, 20.042892456054688, -43.45709228515625" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Pane fx:id="Duck3" layoutX="-3.0" layoutY="422.0" prefHeight="79.0" prefWidth="102.0">
+      <Pane fx:id="Duck3" layoutX="-3.0" layoutY="422.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck3" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck3" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../GreenDuck.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck2" accessibleText="2g" fill="#1f93ff00" layoutX="49.0" layoutY="49.0" onMouseClicked="#OnClick" points="-9.957103729248047, -38.20709228515625, -36.20710372924805, -23.75, -34.249996185302734, 12.79290771484375, -4.707103729248047, 20.54290771484375, 7.0, 20.54290771484375, 42.09803771972656, -15.75, 36.79289245605469, -34.45709228515625, 19.542892456054688, -41.0" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Pane fx:id="Duck4" layoutX="828.0" layoutY="283.0" prefHeight="79.0" prefWidth="102.0">
+      <Pane fx:id="Duck4" layoutX="828.0" layoutY="283.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck4" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck4" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../DuckHuntL.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck3" accessibleText="3g" fill="#1f93ff00" onMouseClicked="#OnClick" points="42.75, 74.29289245605469, 79.75, 61.29289245605469, 87.54290771484375, 54.54289245605469, 94.03997802734375, 21.25, 30.29290771484375, 3.2928924560546875, 16.04290771484375, 8.0, 8.0, 21.25, 8.0, 26.25" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Pane fx:id="Duck5" layoutX="829.0" layoutY="360.0" prefHeight="79.0" prefWidth="102.0">
+      <Pane fx:id="Duck5" layoutX="829.0" layoutY="360.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck5" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck5" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../DuckHuntL.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck4" accessibleText="4g" fill="#1f93ff00" onMouseClicked="#OnClick" points="42.75, 68.5, 53.79290771484375, 68.5, 65.54290771484375, 65.79290771484375, 75.0, 57.75, 86.54290771484375, 46.25, 90.04290771484375, 25.29290771484375, 75.0, 17.04290771484375, 26.29290771484375, 3.54290771484375, 12.79290771484375, 8.0, 4.29290771484375, 20.04290771484375, 6.0, 33.5, 17.79290771484375, 46.25" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Pane fx:id="Duck6" layoutX="830.0" layoutY="438.0" prefHeight="79.0" prefWidth="102.0">
+      <Pane fx:id="Duck6" layoutX="838.0" layoutY="438.0" prefHeight="79.0" prefWidth="102.0" visible="false">
          <children>
-            <ImageView fx:id="imgDuck6" accessibleText="5" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgDuck6" accessibleText="5" fitHeight="62.0" fitWidth="96.0" layoutX="6.0" layoutY="8.0" onMouseClicked="#MousePic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../DuckHuntL.png" />
                </image>
             </ImageView>
             <Polygon fx:id="PDuck5" accessibleText="5g" fill="#1f93ff00" onMouseClicked="#OnClick" points="32.54290771484375, 50.75, 42.75, 68.5, 56.29290771484375, 66.04290771484375, 75.0, 57.75, 79.75, 53.75, 83.75, 33.5, 87.79290771484375, 21.25, 72.54290771484375, 15.29290771484375, 59.29290771484375, 11.25, 29.5, 5.54290771484375, 12.79290771484375, 5.54290771484375, 4.04290771484375, 21.25, 4.04290771484375, 29.04290771484375, 12.79290771484375, 39.54290771484375" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
       </Pane>
-      <Button layoutX="118.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnDuck" text="Duck" />
-      <Line fx:id="wallLeft" endX="-101.0" endY="475.0" layoutX="100.0" layoutY="1.0" startX="-100.0" />
-      <Line fx:id="wallUp" endX="440.29290771484375" endY="-10.707107543945312" layoutX="501.0" layoutY="11.0" startX="-500.29290771484375" startY="-10.707107543945312" />
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="85.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="147.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="293.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="440.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="586.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="149.0" layoutX="703.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Grass3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="549.0" fitWidth="113.0" layoutX="835.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Wood1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="533.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Wood2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="155.0" fitWidth="739.0" layoutX="96.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../WoodT.png" />
-         </image>
-      </ImageView>
+      <Label layoutX="405.0" layoutY="538.0" text="Timer" />
+      <Label layoutX="288.0" layoutY="538.0" text="Points" />
    </children>
 </AnchorPane>
