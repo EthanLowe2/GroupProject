@@ -151,6 +151,7 @@ public class duck {
     }
 
     public void shoot() {
+        
         inUse = true;
         x = 0;
         y = 0;

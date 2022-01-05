@@ -53,6 +53,12 @@ public class DuckController implements Initializable {
     boolean Up;
     int Time;
     boolean cont = false;
+    boolean DuckUse1= false;
+    boolean DuckUse2= false;
+    boolean DuckUse3= false;
+    boolean DuckUse4= false;
+    boolean DuckUse5= false;
+    boolean DuckUse6= false;
     duck ducks[] = new duck[6];
 
     void timer() {
@@ -126,29 +132,35 @@ public class DuckController implements Initializable {
 
     void pickDuck() {
         Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-        if (Duck == 1 && Duck1.getTranslateX() == 0) {
+        if (Duck == 1 && Duck1.getTranslateX() == 0 && DuckUse1 == false) {
             ducks[0] = new duck(Duck1, false, wallDown, wallLeft, wallRight, wallUp, imgDuck1, PDuck0, 0);
             ducks[0].start();
+            DuckUse1= true;
         }
-        if (Duck == 2 && Duck2.getTranslateX() == 0) {
+        if (Duck == 2 && Duck2.getTranslateX() == 0&& DuckUse1 == false) {
             ducks[1] = new duck(Duck2, false, wallDown, wallLeft, wallRight, wallUp, imgDuck2, PDuck1, 1);
             ducks[1].start();
+            DuckUse2= true;
         }
-        if (Duck == 3 && Duck3.getTranslateX() == 0) {
+        if (Duck == 3 && Duck3.getTranslateX() == 0&& DuckUse1 == false) {
             ducks[2] = new duck(Duck3, false, wallDown, wallLeft, wallRight, wallUp, imgDuck3, PDuck2, 2);
             ducks[2].start();
+            DuckUse3= true;
         }
-        if (Duck == 4 && Duck4.getTranslateX() == 0) {
+        if (Duck == 4 && Duck4.getTranslateX() == 0&& DuckUse1 == false) {
             ducks[3] = new duck(Duck4, true, wallDown, wallLeft, wallRight, wallUp, imgDuck4, PDuck3, 3);
             ducks[3].start();
+            DuckUse4= true;
         }
-        if (Duck == 5 && Duck5.getTranslateX() == 0) {
+        if (Duck == 5 && Duck5.getTranslateX() == 0&& DuckUse1 == false) {
             ducks[4] = new duck(Duck5, true, wallDown, wallLeft, wallRight, wallUp, imgDuck5, PDuck4, 4);
             ducks[4].start();
+            DuckUse5= true;
         }
-        if (Duck == 6 && Duck6.getTranslateX() == 0) {
+        if (Duck == 6 && Duck6.getTranslateX() == 0&& DuckUse1 == false) {
             ducks[5] = new duck(Duck6, true, wallDown, wallLeft, wallRight, wallUp, imgDuck6, PDuck5, 5);
             ducks[5].start();
+            DuckUse6= true;
         }
     }
 
@@ -169,18 +181,72 @@ public class DuckController implements Initializable {
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
+                if (spot == 0){
+                    DuckUse1 = false;
+                }
+                if (spot == 1){
+                    DuckUse2 = false;
+                }
+                if (spot == 2){
+                    DuckUse3 = false;
+                }
+                if (spot == 3){
+                    DuckUse4 = false;
+                }
+                if (spot == 4){
+                    DuckUse5 = false;
+                }
+                if (spot == 5){
+                    DuckUse6 = false;
+                }
             } else if (("" + poly.getAccessibleText().charAt(1)).equals("y")) {
                 points = points + 3;
                 ShowPoints();
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
+                if (spot == 0){
+                    DuckUse1 = false;
+                }
+                if (spot == 1){
+                    DuckUse2 = false;
+                }
+                if (spot == 2){
+                    DuckUse3 = false;
+                }
+                if (spot == 3){
+                    DuckUse4 = false;
+                }
+                if (spot == 4){
+                    DuckUse5 = false;
+                }
+                if (spot == 5){
+                    DuckUse6 = false;
+                }
             } else if (("" + poly.getAccessibleText().charAt(1)).equals("r")) {
                 points = points + 5;
                 ShowPoints();
                 Bullets--;
                 ShowBull();
                 ducks[spot].shoot();
+                if (spot == 0){
+                    DuckUse1 = false;
+                }
+                if (spot == 1){
+                    DuckUse2 = false;
+                }
+                if (spot == 2){
+                    DuckUse3 = false;
+                }
+                if (spot == 3){
+                    DuckUse4 = false;
+                }
+                if (spot == 4){
+                    DuckUse5 = false;
+                }
+                if (spot == 5){
+                    DuckUse6 = false;
+                }
             }
         }
     }
