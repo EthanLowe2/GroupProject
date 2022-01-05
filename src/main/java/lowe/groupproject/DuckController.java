@@ -51,11 +51,15 @@ public class DuckController implements Initializable {
     int Duckup;
     boolean Side;
     boolean Up;
+    int Time;
+    boolean cont = false;
     duck ducks[] = new duck[6];
 
     void timer() {
+        Duckgo();
         int play = Integer.parseInt(lblTimer.getText()) + 1;
         lblTimer.setText("" + play);
+        Time++;
     }
 
     void Backbtn(ActionEvent event) throws IOException {
@@ -89,6 +93,35 @@ public class DuckController implements Initializable {
     @FXML
     void btnDuck(ActionEvent event) {
         pickDuck();
+    }
+    void Duckgo(){
+        
+        if (Time < 5){
+            pickDuck();
+        }
+        
+        else if (Time > 5 && Time < 10){
+            pickDuck();
+            pickDuck();
+        }
+        else if (Time > 10 && Time < 15){
+            pickDuck();
+            pickDuck();
+            pickDuck();
+        }
+        else if (Time > 15 && Time < 20){
+            pickDuck();
+            pickDuck();
+            pickDuck();
+            pickDuck();
+            cont = true;
+        }
+        else if(cont = true){
+            pickDuck();
+            pickDuck();
+            pickDuck();
+            pickDuck();
+        }
     }
 
     void pickDuck() {

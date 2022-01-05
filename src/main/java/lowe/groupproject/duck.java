@@ -37,7 +37,7 @@ public class duck {
     }
 
     public duck(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum) {
-        int DuckX = ThreadLocalRandom.current().nextInt(5, 12 + 1);
+        int DuckX = ThreadLocalRandom.current().nextInt(5, 9 + 1);
         int DuckY = ThreadLocalRandom.current().nextInt(-6, -2 + 1);
         x = DuckX;
         y = DuckY;
@@ -151,7 +151,7 @@ public class duck {
     }
 
     public void shoot() {
-        inUse = false;
+        inUse = true;
         x = 0;
         y = 0;
         if (DuckCol <= 50 && DuckCol > 40) {
@@ -163,10 +163,12 @@ public class duck {
         if (DuckCol <= 25 && DuckCol >= 0) {
             imgDuck.setImage(new Image(getClass().getResource("/DuckShot.png").toString()));
         }
+        x = 0;
         duckmove.stop();
         duckmove.setDelay(Duration.seconds(1));
         y = 9;
         duckmove.play();
+        x = 0;
     }
 
     public void start() {
