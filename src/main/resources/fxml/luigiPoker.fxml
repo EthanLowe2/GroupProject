@@ -63,27 +63,27 @@
             <Font name="The Wild Breath of Zelda" size="22.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgPlayerC1" fitHeight="93.0" fitWidth="60.0" layoutX="120.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPlayerC1" fitHeight="93.0" fitWidth="60.0" layoutX="120.0" layoutY="685.0" onMouseClicked="#Draw" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgPlayerC2" fitHeight="93.0" fitWidth="60.0" layoutX="200.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPlayerC2" fitHeight="93.0" fitWidth="60.0" layoutX="200.0" layoutY="685.0" onMouseClicked="#Draw" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgPlayerC3" fitHeight="93.0" fitWidth="60.0" layoutX="276.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPlayerC3" fitHeight="93.0" fitWidth="60.0" layoutX="276.0" layoutY="685.0" onMouseClicked="#Draw" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgPlayerC4" fitHeight="93.0" fitWidth="60.0" layoutX="350.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPlayerC4" fitHeight="93.0" fitWidth="60.0" layoutX="350.0" layoutY="685.0" onMouseClicked="#Draw" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgPlayerC5" fitHeight="93.0" fitWidth="60.0" layoutX="426.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPlayerC5" fitHeight="93.0" fitWidth="60.0" layoutX="426.0" layoutY="685.0" onMouseClicked="#Draw" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
@@ -124,6 +124,31 @@
          </image>
       </ImageView>
       <ImageView fx:id="imgLuigiC5" fitHeight="93.0" fitWidth="62.0" layoutX="426.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlayerD1" fitHeight="93.0" fitWidth="60.0" layoutX="120.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlayerD2" fitHeight="93.0" fitWidth="60.0" layoutX="200.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlayerD3" fitHeight="93.0" fitWidth="60.0" layoutX="276.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlayerD4" fitHeight="93.0" fitWidth="60.0" layoutX="350.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlayerD5" fitHeight="93.0" fitWidth="60.0" layoutX="426.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>

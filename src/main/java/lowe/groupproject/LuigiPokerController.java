@@ -14,6 +14,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -23,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class LuigiPokerController implements Initializable {
 
     @FXML
-    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
+    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgPlayerD1, imgPlayerD2, imgPlayerD3, imgPlayerD4, imgPlayerD5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
 
     @FXML
     private Label lblWallet;
@@ -73,21 +74,27 @@ public class LuigiPokerController implements Initializable {
             if (PC[i] == 1 || PC[i] == 2 || PC[i] == 3 || PC[i] == 4 || PC[i] == 5 || PC[i] == 6) {
                 pCloudCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
+                pCardImg[i].setAccessibleText("Cloud" + i);//Used for draw and hold
             } else if (PC[i] == 7 || PC[i] == 8 || PC[i] == 9 || PC[i] == 10 || PC[i] == 11 || PC[i] == 12) {
                 pMushroomCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
+                pCardImg[i].setAccessibleText("Mushroom");
             } else if (PC[i] == 13 || PC[i] == 14 || PC[i] == 15 || PC[i] == 16 || PC[i] == 17 || PC[i] == 18) {
                 pFireFlowerCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
+                pCardImg[i].setAccessibleText("FireFlower");
             } else if (PC[i] == 19 || PC[i] == 20 || PC[i] == 21 || PC[i] == 22 || PC[i] == 23 || PC[i] == 24) {
                 pLuigiCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
+                pCardImg[i].setAccessibleText("Luigi");
             } else if (PC[i] == 25 || PC[i] == 26 || PC[i] == 27 || PC[i] == 28 || PC[i] == 29 || PC[i] == 30) {
                 pMarioCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Mario.png").toString()));
+                pCardImg[i].setAccessibleText("Mario");
             } else if (PC[i] == 31 || PC[i] == 32 || PC[i] == 33 || PC[i] == 34 || PC[i] == 35 || PC[i] == 36) {
                 pStarCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Star.png").toString()));
+                pCardImg[i].setAccessibleText("Star");
             }
         }
     }
@@ -274,6 +281,18 @@ public class LuigiPokerController implements Initializable {
         }
     }
 
+    @FXML
+    void Draw(MouseEvent event) {
+    if( pCardImg.getAccessibleText().equals("Cloud + 1" || .getAccessibleText().equals("Cloud + 2" || img.getAccessibleText().equals("Cloud + 3" || img.getAccessibleText().equals("Cloud + 4" || img.getAccessibleText().equals("Cloud + 5")
+            
+    )
+    }
+
+    @FXML
+    void Hold(MouseEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb
     ) {
@@ -281,6 +300,14 @@ public class LuigiPokerController implements Initializable {
         pCardImg = picArray; //Transfer the array to top
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
+
+        //temporary until startup method
+        imgPlayerD1.setVisible(false);
+        imgPlayerD2.setVisible(false);
+        imgPlayerD3.setVisible(false);
+        imgPlayerD4.setVisible(false);
+        imgPlayerD5.setVisible(false);
+
         //Opening ,method start
         pCardRandomizer();
         pSuitCount();
