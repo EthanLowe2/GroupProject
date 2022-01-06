@@ -110,12 +110,12 @@ public class DuckController implements Initializable {
             pickDuck();
             pickDuck();
         }
-        else if (Time > 10 && Time < 15){
+        else if (Time > 11 && Time < 15){
             pickDuck();
             pickDuck();
             pickDuck();
         }
-        else if (Time > 15 && Time < 20){
+        else if (Time > 16 && Time < 20){
             pickDuck();
             pickDuck();
             pickDuck();

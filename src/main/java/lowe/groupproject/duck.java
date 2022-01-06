@@ -30,6 +30,7 @@ public class duck {
     public boolean inUse = false;
     private int duckswitch;
     private int duckswitchs;
+    private boolean isShot;
     Timeline duckmove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveDuck()));
 
     public duck() {
@@ -149,6 +150,10 @@ public class duck {
     public boolean collision(Pane block1, Line block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
+    
+    public boolean shotCheck {
+        return isShot;
+    }
 
     public void shoot() {
         
@@ -168,8 +173,9 @@ public class duck {
         duckmove.stop();
         duckmove.setDelay(Duration.seconds(1));
         y = 9;
+        isShot = true;
         duckmove.play();
-        x = 0;
+        x = 0;  
     }
 
     public void start() {
