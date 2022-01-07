@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import javafx.scene.control.Label;
 
 public class duck {
 
@@ -31,13 +32,14 @@ public class duck {
     private int duckswitch;
     private int duckswitchs;
     private boolean isShot;
+    private Label Loselbl;
     Timeline duckmove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveDuck()));
 
     public duck() {
 
     }
 
-    public duck(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum) {
+    public duck(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum, Label TLoseLabel ) {
         int DuckX = ThreadLocalRandom.current().nextInt(5, 9 + 1);
         int DuckY = ThreadLocalRandom.current().nextInt(-6, -2 + 1);
         x = DuckX;
@@ -50,6 +52,7 @@ public class duck {
         wall3 = Twall3;
         wall4 = Twall4;
         side = Side;
+        Loselbl = TLoseLabel;
         PolyDuck = TempPoly;
         inUse = true;
         if (side == true) {
@@ -106,6 +109,10 @@ public class duck {
         pnlMove.setTranslateX(pnlMove.getTranslateX() + x);
         pnlMove.setTranslateY(pnlMove.getTranslateY() + y);
         if (collision(pnlMove, wall1)) {
+            if (isShot == false){
+             Loselbl.setVisible(true);
+             Loselbl.setText("YOU LOSE");
+            }
             pnlMove.setTranslateX(0);
             pnlMove.setTranslateY(0);
             x = 0;
@@ -115,6 +122,10 @@ public class duck {
             pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall2)) {
+            if (isShot == false){
+             Loselbl.setVisible(true);
+             Loselbl.setText("YOU LOSE");
+            }
             pnlMove.setTranslateX(0);
             pnlMove.setTranslateY(0);
             x = 0;
@@ -124,6 +135,10 @@ public class duck {
             pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall3)) {
+            if (isShot == false){
+             Loselbl.setVisible(true);
+             Loselbl.setText("YOU LOSE");
+            }
             pnlMove.setTranslateX(0);
             pnlMove.setTranslateY(0);
             x = 0;
@@ -133,6 +148,10 @@ public class duck {
             pnlMove.setVisible(false);
         }
         if (collision(pnlMove, wall4)) {
+            if (isShot == false){
+             Loselbl.setVisible(true);
+             Loselbl.setText("YOU LOSE");
+            }
             pnlMove.setTranslateX(0);
             pnlMove.setTranslateY(0);
             x = 0;
@@ -150,13 +169,8 @@ public class duck {
     public boolean collision(Pane block1, Line block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
-    
-    public boolean shotCheck {
-        return isShot;
-    }
 
     public void shoot() {
-        
         inUse = true;
         x = 0;
         y = 0;
