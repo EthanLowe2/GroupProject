@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 public class LuigiPokerController implements Initializable {
 
     @FXML
-    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgPlayerD1, imgPlayerD2, imgPlayerD3, imgPlayerD4, imgPlayerD5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
+    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5,  imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
 
     @FXML
     private Label lblWallet;
@@ -44,6 +44,8 @@ public class LuigiPokerController implements Initializable {
     int junk;
 
     int H = 0, L = 0; //ints for setting luigi Card images
+
+    boolean spot = true;
 
     ImageView pCardImg[];
     ImageView lCardImg[];
@@ -74,7 +76,7 @@ public class LuigiPokerController implements Initializable {
             if (PC[i] == 1 || PC[i] == 2 || PC[i] == 3 || PC[i] == 4 || PC[i] == 5 || PC[i] == 6) {
                 pCloudCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
-                pCardImg[i].setAccessibleText("Cloud" + i);//Used for draw and hold
+                pCardImg[i].setAccessibleText("Cloud");//Used for draw and hold
             } else if (PC[i] == 7 || PC[i] == 8 || PC[i] == 9 || PC[i] == 10 || PC[i] == 11 || PC[i] == 12) {
                 pMushroomCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
@@ -283,9 +285,25 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void Draw(MouseEvent event) {
-    if( pCardImg.getAccessibleText().equals("Cloud + 1" || .getAccessibleText().equals("Cloud + 2" || img.getAccessibleText().equals("Cloud + 3" || img.getAccessibleText().equals("Cloud + 4" || img.getAccessibleText().equals("Cloud + 5")
+        ImageView img = (ImageView) event.getSource();
+        if (img.getLayoutY() == 685) {
             
-    )
+            img.setLayoutY(650);
+
+            
+        } else if (img.getLayoutY() == 650) {
+            
+            img.setLayoutY(685);
+            
+
+        }
+        if(imgPlayerC1.getLayoutY() == 650 || imgPlayerC2.getLayoutY() == 650 || imgPlayerC3.getLayoutY() == 650 ||imgPlayerC4.getLayoutY() == 650 || imgPlayerC5.getLayoutY() == 650){
+        imgHold.setVisible(false);
+        }
+        else if(imgPlayerC1.getLayoutY() == 685 && imgPlayerC2.getLayoutY() == 685 && imgPlayerC3.getLayoutY() == 685 && imgPlayerC4.getLayoutY() == 685 && imgPlayerC5.getLayoutY() == 685 ){
+        imgHold.setVisible(true);
+        }
+
     }
 
     @FXML
@@ -301,13 +319,7 @@ public class LuigiPokerController implements Initializable {
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
 
-        //temporary until startup method
-        imgPlayerD1.setVisible(false);
-        imgPlayerD2.setVisible(false);
-        imgPlayerD3.setVisible(false);
-        imgPlayerD4.setVisible(false);
-        imgPlayerD5.setVisible(false);
-
+        
         //Opening ,method start
         pCardRandomizer();
         pSuitCount();

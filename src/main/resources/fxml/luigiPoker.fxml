@@ -23,12 +23,12 @@
             <Image url="@../Bet(O).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgDraw" fitHeight="83.0" fitWidth="284.0" layoutX="118.0" layoutY="575.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgDraw" fitHeight="59.0" fitWidth="270.0" layoutX="124.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Draw.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgHold" fitHeight="83.0" fitWidth="284.0" layoutX="117.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgHold" fitHeight="59.0" fitWidth="304.0" layoutX="124.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Hold.png" />
          </image>
@@ -124,31 +124,6 @@
          </image>
       </ImageView>
       <ImageView fx:id="imgLuigiC5" fitHeight="93.0" fitWidth="62.0" layoutX="426.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPlayerD1" fitHeight="93.0" fitWidth="60.0" layoutX="120.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPlayerD2" fitHeight="93.0" fitWidth="60.0" layoutX="200.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPlayerD3" fitHeight="93.0" fitWidth="60.0" layoutX="276.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPlayerD4" fitHeight="93.0" fitWidth="60.0" layoutX="350.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPlayerD5" fitHeight="93.0" fitWidth="60.0" layoutX="426.0" layoutY="653.0" onMouseClicked="#Hold" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Blank.png" />
          </image>
