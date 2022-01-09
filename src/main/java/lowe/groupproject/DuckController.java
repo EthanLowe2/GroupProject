@@ -40,6 +40,13 @@ public class DuckController implements Initializable {
 
     @FXML
     private Polygon PDuck0, PDuck1, PDuck2, PDuck3, PDuck4, PDuck5;
+    
+    
+    @FXML
+    private Label lblContinue;
+
+    @FXML
+    private Label lblCountContinue;
 
     Timeline clock = new Timeline(new KeyFrame(Duration.millis(500), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
@@ -52,6 +59,7 @@ public class DuckController implements Initializable {
     boolean Side;
     boolean Up;
     int Time;
+    boolean Continue = false;
     boolean cont = false;
     boolean DuckUse1= false;
     boolean DuckUse2= false;
@@ -63,6 +71,7 @@ public class DuckController implements Initializable {
 
     void timer() {
         pickDuck();
+        checkTime();
         int play = Integer.parseInt(lblTimer.getText());
         if (Time % 2 == 0){
             int newtime = play +1;
@@ -85,55 +94,64 @@ public class DuckController implements Initializable {
         count.setCycleCount(Timeline.INDEFINITE);
         count.play();
     }
-
-    void CountDown() {
-        if (lblcount.getText().equals("")) {
+    
+    void checkTime(){
+    int endTime = MainApp.DuckTime;
+    int lblTime = Integer.parseInt(lblTimer.getText());
+    if (endTime == lblTime){
+        clock.stop();
+        lblLose.setText("TIME IS UP");
+        lblLose.setVisible(true);
+        lblContinue.setVisible(true);
+        lblCountContinue.setVisible(true);
+        count.setCycleCount(Timeline.INDEFINITE);
+        count.play();
+    }
+    }
+    
+    @FXML
+    void msnContinue(MouseEvent event) throws IOException {
+        MainApp.setRoot("StartDcukController");
+    }
+    
+    void CountDown() throws IOException {
+        if (lblcount.getText().equals("") && !Continue) {
+            lblcount.setVisible(true);
             lblcount.setText("3");
-        } else if (lblcount.getText().equals("3")) {
+        } else if (lblcount.getText().equals("3") && !Continue) {
             lblcount.setText("2");
-        } else if (lblcount.getText().equals("2")) {
+        } else if (lblcount.getText().equals("2") && !Continue) {
             lblcount.setText("1");
-        } else if (lblcount.getText().equals("1")) {
+        } else if (lblcount.getText().equals("1") && !Continue) {
             lblcount.setText("GO!");
-        } else {
+        } else if (lblcount.getText().equals("GO!") && !Continue) {
             lblcount.setText("  ");
             clock.setCycleCount(Timeline.INDEFINITE);
             clock.play();
             Running = true;
+            lblcount.setVisible(false);
+        }else if (Continue){
+          continueCountDown();
+
+        }
+    }
+    void continueCountDown() throws IOException{
+        if (lblCountContinue.getText().equals("5") && Continue){
+            lblCountContinue.setText("4");
+        }else if (lblCountContinue.getText().equals("4") && Continue){
+            lblCountContinue.setText("3");
+        }else if (lblCountContinue.getText().equals("3") && Continue){
+            lblCountContinue.setText("2");
+        }else if (lblCountContinue.getText().equals("2") && Continue){
+            lblCountContinue.setText("1");
+        }else if (lblCountContinue.getText().equals("1") && Continue){
+            lblCountContinue.setText("0");
+        }else if (lblCountContinue.getText().equals("0") && Continue){
+            MainApp.setRoot("primary");
         }
 
     }
-
-    void Duckgo(){
-        
-        if (Time < 5){
-            pickDuck();
-        }
-        
-        else if (Time > 5 && Time < 10){
-            pickDuck();
-           
-        }
-        else if (Time > 11 && Time < 15){
-            pickDuck();
-            
-            
-        }
-        else if (Time > 16 && Time < 20){
-            pickDuck();
-            pickDuck();
-            pickDuck();
-            pickDuck();
-            cont = true;
-        }
-        else if(cont = true){
-            pickDuck();
-            pickDuck();
-            pickDuck();
-            pickDuck();
-        }
-    }
-
+    
     void pickDuck() {
         Duck = ThreadLocalRandom.current().nextInt(1, 6 + 1);
         if (Duck == 1 && Duck1.getTranslateX() == 0 && DuckUse1 == false) {

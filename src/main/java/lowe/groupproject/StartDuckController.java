@@ -6,12 +6,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 public class StartDuckController implements Initializable {
     @FXML
     private TextField txtTime;
-
+    
     @FXML
     void btnDown(ActionEvent event) {
     try {
@@ -32,7 +34,20 @@ public class StartDuckController implements Initializable {
     
     @FXML
     void btncontunie(ActionEvent event) throws IOException {
-        MainApp.setRoot("Duck");
+        
+        if (!txtTime.getText().equals("0") && !txtTime.getText().equals("1") && !txtTime.getText().equals("2") && !txtTime.getText().equals("3")&& !txtTime.getText().equals("4")&& !txtTime.getText().equals("5")){
+            int newtime = Integer.parseInt(txtTime.getText());
+            MainApp.DuckTime = newtime;        
+            MainApp.setRoot("Duck");
+        }
+        if (txtTime.getText().equals("0") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3")|| txtTime.getText().equals("4")|| txtTime.getText().equals("5")){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("You must buy at least 5 seconds");
+            alert.showAndWait();
+        }
+        
     }
 
     @Override
