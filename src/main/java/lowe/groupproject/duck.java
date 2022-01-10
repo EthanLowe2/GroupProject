@@ -40,7 +40,7 @@ public class duck {
     }
 
     public duck(Pane movePane, boolean Side, Line Twall1, Line Twall2, Line Twall3, Line Twall4, ImageView TimgDuck, Polygon TempPoly, int DuckNum, Label TLoseLabel ) {
-        int DuckX = ThreadLocalRandom.current().nextInt(5, 9 + 1);
+        int DuckX = ThreadLocalRandom.current().nextInt(5, 15 + 1);
         int DuckY = ThreadLocalRandom.current().nextInt(-6, -2 + 1);
         x = DuckX;
         y = DuckY;

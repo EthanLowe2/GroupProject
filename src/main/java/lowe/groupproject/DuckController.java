@@ -114,7 +114,7 @@ public class DuckController implements Initializable {
         MainApp.setRoot("StartDcukController");
     }
     
-    void CountDown() throws IOException {
+    void CountDown() {
         if (lblcount.getText().equals("") && !Continue) {
             lblcount.setVisible(true);
             lblcount.setText("3");
@@ -135,7 +135,7 @@ public class DuckController implements Initializable {
 
         }
     }
-    void continueCountDown() throws IOException{
+    void continueCountDown(){
         if (lblCountContinue.getText().equals("5") && Continue){
             lblCountContinue.setText("4");
         }else if (lblCountContinue.getText().equals("4") && Continue){
@@ -147,9 +147,12 @@ public class DuckController implements Initializable {
         }else if (lblCountContinue.getText().equals("1") && Continue){
             lblCountContinue.setText("0");
         }else if (lblCountContinue.getText().equals("0") && Continue){
-            MainApp.setRoot("primary");
+            try{
+             MainApp.setRoot("primary");   
+            }
+            catch (Exception ex){
+            }
         }
-
     }
     
     void pickDuck() {
