@@ -6,11 +6,15 @@ package lowe.groupproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -19,13 +23,19 @@ import javafx.scene.image.ImageView;
  */
 public class HorseRaceController implements Initializable {
     @FXML
-    private ImageView Horse1;
+    private ImageView Horse1,Horse2,Horse3,Horse4,Horse5;
 
     @FXML
-    private Button btnHorse1,btnHorse2,btnHorse3,btnHorse4,btnHorse5,btnSitout;
+    private Button btnSitout;
+
+    Timeline horsemove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveHorse()));
     
-    @FXML
-    void btnHorse(ActionEvent event) {
+    void moveHorse(){
+        
+    }
+    
+    @FXML        
+    void btnHorse(MouseEvent event) {
 
     }
 
@@ -33,7 +43,6 @@ public class HorseRaceController implements Initializable {
     void btnSitOutA(ActionEvent event) {
 
     }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
