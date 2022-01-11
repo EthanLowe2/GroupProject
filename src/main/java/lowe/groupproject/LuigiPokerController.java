@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 public class LuigiPokerController implements Initializable {
 
     @FXML
-    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5,  imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
+    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
 
     @FXML
     private Label lblWallet;
@@ -44,6 +44,8 @@ public class LuigiPokerController implements Initializable {
     int junk;
 
     int H = 0, L = 0; //ints for setting luigi Card images
+
+    int d;
 
     boolean spot = true;
 
@@ -73,31 +75,32 @@ public class LuigiPokerController implements Initializable {
 
     void pSuitCount() { //uses the random numbers from pCardRandomizer to add to the players counter and update the proper image
         for (int i = 0; i < 5; i++) {
-            if (PC[i] == 1 || PC[i] == 2 || PC[i] == 3 || PC[i] == 4 || PC[i] == 5 || PC[i] == 6) {
+            if (PC[i] == 1 || PC[i] == 2 || PC[i] == 3 || PC[i] == 4 || PC[i] == 5 || PC[i] == 6 && tCloudCount >6) {
                 pCloudCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
                 pCardImg[i].setAccessibleText("Cloud");//Used for draw and hold
-            } else if (PC[i] == 7 || PC[i] == 8 || PC[i] == 9 || PC[i] == 10 || PC[i] == 11 || PC[i] == 12) {
+            } else if (PC[i] == 7 || PC[i] == 8 || PC[i] == 9 || PC[i] == 10 || PC[i] == 11 || PC[i] == 12 && tMushroomCount >6) {
                 pMushroomCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
                 pCardImg[i].setAccessibleText("Mushroom");
-            } else if (PC[i] == 13 || PC[i] == 14 || PC[i] == 15 || PC[i] == 16 || PC[i] == 17 || PC[i] == 18) {
+            } else if (PC[i] == 13 || PC[i] == 14 || PC[i] == 15 || PC[i] == 16 || PC[i] == 17 || PC[i] == 18 && tFireFlowerCount >6) {
                 pFireFlowerCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
                 pCardImg[i].setAccessibleText("FireFlower");
-            } else if (PC[i] == 19 || PC[i] == 20 || PC[i] == 21 || PC[i] == 22 || PC[i] == 23 || PC[i] == 24) {
+            } else if (PC[i] == 19 || PC[i] == 20 || PC[i] == 21 || PC[i] == 22 || PC[i] == 23 || PC[i] == 24 && tLuigiCount >6) {
                 pLuigiCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
                 pCardImg[i].setAccessibleText("Luigi");
-            } else if (PC[i] == 25 || PC[i] == 26 || PC[i] == 27 || PC[i] == 28 || PC[i] == 29 || PC[i] == 30) {
+            } else if (PC[i] == 25 || PC[i] == 26 || PC[i] == 27 || PC[i] == 28 || PC[i] == 29 || PC[i] == 30 && tMarioCount >6) {
                 pMarioCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Mario.png").toString()));
                 pCardImg[i].setAccessibleText("Mario");
-            } else if (PC[i] == 31 || PC[i] == 32 || PC[i] == 33 || PC[i] == 34 || PC[i] == 35 || PC[i] == 36) {
+            } else if (PC[i] == 31 || PC[i] == 32 || PC[i] == 33 || PC[i] == 34 || PC[i] == 35 || PC[i] == 36 && tStarCount >6) {
                 pStarCount++;
                 pCardImg[i].setImage(new Image(getClass().getResource("/Star.png").toString()));
                 pCardImg[i].setAccessibleText("Star");
             }
+            
         }
     }
 
@@ -287,23 +290,61 @@ public class LuigiPokerController implements Initializable {
     void Draw(MouseEvent event) {
         ImageView img = (ImageView) event.getSource();
         if (img.getLayoutY() == 685) {
-            
+
             img.setLayoutY(650);
 
-            
         } else if (img.getLayoutY() == 650) {
-            
+
             img.setLayoutY(685);
-            
 
         }
-        if(imgPlayerC1.getLayoutY() == 650 || imgPlayerC2.getLayoutY() == 650 || imgPlayerC3.getLayoutY() == 650 ||imgPlayerC4.getLayoutY() == 650 || imgPlayerC5.getLayoutY() == 650){
-        imgHold.setVisible(false);
-        }
-        else if(imgPlayerC1.getLayoutY() == 685 && imgPlayerC2.getLayoutY() == 685 && imgPlayerC3.getLayoutY() == 685 && imgPlayerC4.getLayoutY() == 685 && imgPlayerC5.getLayoutY() == 685 ){
-        imgHold.setVisible(true);
+        if (imgPlayerC1.getLayoutY() == 650 || imgPlayerC2.getLayoutY() == 650 || imgPlayerC3.getLayoutY() == 650 || imgPlayerC4.getLayoutY() == 650 || imgPlayerC5.getLayoutY() == 650) {
+            imgHold.setVisible(false);
+        } else if (imgPlayerC1.getLayoutY() == 685 && imgPlayerC2.getLayoutY() == 685 && imgPlayerC3.getLayoutY() == 685 && imgPlayerC4.getLayoutY() == 685 && imgPlayerC5.getLayoutY() == 685) {
+            imgHold.setVisible(true);
         }
 
+    }
+
+    void suitCheck() {
+         
+            if (pCardImg[d].getAccessibleText().equals("Star")) {
+                tStarCount = tStarCount - 1;
+                pStarCount = pStarCount - 1;
+                //Need to add a pc randomizer link here before reroll method is run
+            }
+            else if (pCardImg[d].getAccessibleText().equals("Mario")) {
+                tMarioCount = tMarioCount - 1;
+                pMarioCount = pMarioCount - 1;   
+            }
+            else if (pCardImg[d].getAccessibleText().equals("Luigi")) {
+                tLuigiCount = tLuigiCount - 1;
+                pLuigiCount = pLuigiCount - 1;
+            }
+            else if (pCardImg[d].getAccessibleText().equals("FireFlower")) {
+                tFireFlowerCount = tFireFlowerCount - 1;
+                pFireFlowerCount = pFireFlowerCount - 1;
+            }
+            else if (pCardImg[d].getAccessibleText().equals("Mushroom")) {
+                tMushroomCount = tMushroomCount - 1;
+                pMushroomCount = pMushroomCount - 1;
+            }
+            else if (pCardImg[d].getAccessibleText().equals("Cloud")) {
+                tCloudCount = tCloudCount - 1;
+                pCloudCount = pCloudCount - 1;
+            }
+        
+    }
+
+    @FXML
+    void drawClick(MouseEvent event) {
+        for (int d = 1; d < 6; d++) {
+            if (pCardImg[d].getLayoutY() == 650) {
+                suitCheck();
+
+                
+            } 
+        }
     }
 
     @FXML
@@ -319,7 +360,6 @@ public class LuigiPokerController implements Initializable {
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
 
-        
         //Opening ,method start
         pCardRandomizer();
         pSuitCount();

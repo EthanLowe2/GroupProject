@@ -23,12 +23,12 @@
             <Image url="@../Bet(O).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgDraw" fitHeight="59.0" fitWidth="270.0" layoutX="124.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgDraw" fitHeight="60.0" fitWidth="276.0" layoutX="124.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Draw.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgHold" fitHeight="59.0" fitWidth="304.0" layoutX="124.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgHold" fitHeight="69.0" fitWidth="276.0" layoutX="124.0" layoutY="575.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Hold.png" />
          </image>
