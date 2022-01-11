@@ -13,16 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class FXMLController implements Initializable {
+public class ReturnController implements Initializable {
     
     @FXML
-    void btnNo(ActionEvent event) throws IOException {
-        MainApp.setRoot("StartDcukController");
+    void btnNo(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
-    void btnYes(ActionEvent event) {
-        System.exit(0); //change to move to the title screen not exit :)
+    void btnYes(ActionEvent event) throws IOException {
+        MainApp.setRoot("StartDuck"); //change to move to the title screen not exit :)
     }
     
     @Override

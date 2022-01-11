@@ -79,6 +79,8 @@ public class DuckController implements Initializable {
         }
         Time++;
         if (lblLose.getText().equals("YOU LOSE")){
+            lblContinue.setVisible(true);
+            lblCountContinue.setVisible(true);
             clock.stop();
             count.stop();
         }
@@ -104,14 +106,14 @@ public class DuckController implements Initializable {
         lblLose.setVisible(true);
         lblContinue.setVisible(true);
         lblCountContinue.setVisible(true);
-        count.setCycleCount(Timeline.INDEFINITE);
+        Continue = true;
         count.play();
     }
     }
     
     @FXML
     void msnContinue(MouseEvent event) throws IOException {
-        MainApp.setRoot("StartDcukController");
+        MainApp.setRoot("StartDuck");
     }
     
     void CountDown() {
@@ -150,7 +152,7 @@ public class DuckController implements Initializable {
             try{
              MainApp.setRoot("primary");   
             }
-            catch (Exception ex){
+            catch (Exception IOException){
             }
         }
     }

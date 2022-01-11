@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.ReturnController">
     <children>
         <Label fx:id="lblOut" layoutX="53.0" layoutY="30.0" minHeight="16" minWidth="69" prefHeight="52.0" prefWidth="215.0" />
       <Label layoutX="57.0" layoutY="65.0" text="Would you Like to Play Again?">
