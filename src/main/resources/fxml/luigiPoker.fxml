@@ -23,7 +23,7 @@
             <Image url="@../Bet(O).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgDraw" fitHeight="60.0" fitWidth="276.0" layoutX="124.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgDraw" fitHeight="60.0" fitWidth="276.0" layoutX="124.0" layoutY="577.0" onMouseClicked="#drawClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Draw.png" />
          </image>
