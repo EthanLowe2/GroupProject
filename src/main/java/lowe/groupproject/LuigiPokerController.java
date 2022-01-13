@@ -45,7 +45,7 @@ public class LuigiPokerController implements Initializable {
 
     int H = 0, L = 0; //ints for setting luigi Card images
 
-    int d = 1;
+    int d = 0;
 
     int i = 0;
     
@@ -60,7 +60,7 @@ public class LuigiPokerController implements Initializable {
     void pCardRandomizer() { //Chooses Random cards for the player and assures no overlap
         if (repick == true) {
             PC[d] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
-            i = d-1;
+            i = d;
         } else if (repick == false) {
             PC[0] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
             PC[1] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
@@ -350,13 +350,15 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void drawClick(MouseEvent event) {
-        for (; d < 6; d++) {
+        for (d=0; d < 5; d++) {
             if (pCardImg[d].getLayoutY() == 650) {
                 suitCheck();
                 repick = true;
                 i=0;
                 pCardRandomizer();
                 pSuitCount();
+                
+                
             }
             else{
             d++;
@@ -371,7 +373,7 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void betClick(MouseEvent event) {
-    Integer.parseInt(lblWallet.getText()) = wallet;
+    wallet = Integer.parseInt(lblWallet.getText());
         System.out.println(wallet);
             wallet = wallet - 1;
             lblWallet.setText("" + wallet);
