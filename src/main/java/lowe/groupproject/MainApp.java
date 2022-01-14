@@ -16,7 +16,7 @@ public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
-        setRoot("StartDuck","");
+        setRoot("HorseRace","");
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -28,6 +28,7 @@ public class MainApp extends Application {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
+        scene.getRoot().requestFocus();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
