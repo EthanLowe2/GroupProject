@@ -27,7 +27,7 @@ public class LuigiPokerController implements Initializable {
     private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigiImageView;
 
     @FXML
-    private Label lblWallet;
+    private Label lblWallet, pTextBottom, pTextTop, textLose, textWLBase, textWin, lTextTop, lTextBottom;
 
     int pStarCount, pMarioCount, pLuigiCount, pFireFlowerCount, pMushroomCount, pCloudCount; //Ammount of each suit player holds
 
@@ -35,7 +35,9 @@ public class LuigiPokerController implements Initializable {
 
     int luigiHandCalc, luigiSuitCalc, luigiLowSuitCalc; // Variables used in calculating and dealing luigis hand
 
-    int luigiHand, luigiSuit, luigiLowSuit; //Int of luigi's hand to compare to players
+    int luigiHand, luigiSuit, luigiLowSuit; //Int of Luigi's hand to compare to Player's
+    
+    int playerHand, playerSuit, playerLowSuit; //Int of players's hand to compare to Luigi's
 
     int luigiHighWeight, luigiLowWeight; //Weighting system used in luigi hand calculation
 
@@ -49,6 +51,8 @@ public class LuigiPokerController implements Initializable {
 
     int i = 0;
     
+    int twoKind = 0;
+
     int wallet = 2410;
 
     boolean spot = true;
@@ -114,11 +118,11 @@ public class LuigiPokerController implements Initializable {
             }
             if (repick == true) {
                 i = 5;
-                
+
             }
 
         }
-        
+
     }
 
     void luigiHandRandomizer() {
@@ -245,6 +249,9 @@ public class LuigiPokerController implements Initializable {
         }
     }
 
+    
+    vdubsuvhjdouhv== nusnc+4748 //ALERT.MUST FIX TWO OF A KIND SETTING FOR LUIGI, consider a for loop of randomized numbers 1-6 until low suit is less then high suit
+    
     void highWeightImgSet() {
         if (luigiSuit == 6) {
             lCardImg[H].setImage(new Image(getClass().getResource("/Star.png").toString()));
@@ -348,38 +355,133 @@ public class LuigiPokerController implements Initializable {
 
     }
 
+    
+    @FXML
+    void Judge(){
+    
+    }
+    
+    @FXML
+    void pHandFinal() {
+        
+        
+    if(pCloudCount == 2){
+     twoKind = twoKind + 2;
+    }  
+    if(pMushroomCount == 2){
+     twoKind = twoKind + 2;
+    }  
+    if(pFireFlowerCount == 2){
+     twoKind = twoKind + 2;
+    }  
+    if(pLuigiCount == 2){
+     twoKind = twoKind + 2;
+    }  
+    if(pMarioCount == 2){
+     twoKind = twoKind + 2;
+    }  
+    if(pStarCount == 2){
+     twoKind = twoKind + 2;
+    }  
+        
+        
+     dzvsdv//   For two of kind plyaer fix consider using a greater variable to compare luigis high suit/variable
+        
+        
+    if(pCloudCount == 5 || pMushroomCount == 5 || pFireFlowerCount == 5 || pLuigiCount == 5 || pMarioCount == 5 || pStarCount == 5){
+      playerHand = 7;
+    }
+    else if(pCloudCount == 4 || pMushroomCount == 4 || pFireFlowerCount == 4 || pLuigiCount == 4 || pMarioCount == 4 || pStarCount == 4){
+      playerHand = 6;
+    }
+    else if((pCloudCount == 3 || pMushroomCount == 3 || pFireFlowerCount == 3 || pLuigiCount == 3 || pMarioCount == 3 || pStarCount == 3) && (pCloudCount == 2 || pMushroomCount == 2 || pFireFlowerCount == 2 || pLuigiCount == 2 || pMarioCount == 2 || pStarCount == 2)){
+      playerHand = 5;
+    }
+    else if(pCloudCount == 3 || pMushroomCount == 3 || pFireFlowerCount == 3 || pLuigiCount == 3 || pMarioCount == 3 || pStarCount == 3){
+      playerHand = 4;
+    }
+    else if(twoKind == 4){
+      playerHand = 3;
+    }
+    else if(pCloudCount == 2 || pMushroomCount == 2 || pFireFlowerCount == 2 || pLuigiCount == 2 || pMarioCount == 2 || pStarCount == 2){
+      playerHand = 2;
+    }
+    else{
+      playerHand = 1;
+    }
+    
+    if(twoKind != 4){
+    if(pCloudCount > pMushroomCount && pCloudCount > pFireFlowerCount && pCloudCount > pLuigiCount && pCloudCount > pMarioCount && pCloudCount > pStarCount){
+    playerSuit = 1;
+    }
+    else if(pMushroomCount > pCloudCount && pMushroomCount > pFireFlowerCount && pMushroomCount > pLuigiCount && pMushroomCount > pMarioCount && pMushroomCount > pStarCount){
+    playerSuit = 2;
+    }
+    else if(pFireFlowerCount> pCloudCount && pFireFlowerCount > pMushroomCount && pFireFlowerCount > pLuigiCount && pFireFlowerCount > pMarioCount && pFireFlowerCount > pStarCount){
+    playerSuit = 3;
+    }
+    else if(pLuigiCount > pMushroomCount && pLuigiCount > pFireFlowerCount && pLuigiCount > pCloudCount && pLuigiCount > pMarioCount && pLuigiCount > pStarCount){
+    playerSuit = 4;
+    }
+    else if(pMarioCount > pCloudCount && pMarioCount > pFireFlowerCount && pMarioCount > pLuigiCount && pMarioCount > pMushroomCount && pMarioCount > pStarCount){
+    playerSuit = 5;
+    }
+    else if(pStarCount > pCloudCount && pStarCount > pFireFlowerCount && pStarCount > pLuigiCount && pStarCount > pMushroomCount && pStarCount > pMarioCount){
+    playerSuit = 6;
+    }
+    
+    // below is a copy to be used for low suit, however modifications may need to be made for two of a kind
+    if(pCloudCount > pMushroomCount && pCloudCount > pFireFlowerCount && pCloudCount > pLuigiCount && pCloudCount > pMarioCount && pCloudCount > pStarCount){
+    playerSuit = 1;
+    }
+    else if(pMushroomCount > pCloudCount && pMushroomCount > pFireFlowerCount && pMushroomCount > pLuigiCount && pMushroomCount > pMarioCount && pMushroomCount > pStarCount){
+    playerSuit = 2;
+    }
+    else if(pFireFlowerCount> pCloudCount && pFireFlowerCount > pMushroomCount && pFireFlowerCount > pLuigiCount && pFireFlowerCount > pMarioCount && pFireFlowerCount > pStarCount){
+    playerSuit = 3;
+    }
+    else if(pLuigiCount > pMushroomCount && pLuigiCount > pFireFlowerCount && pLuigiCount > pCloudCount && pLuigiCount > pMarioCount && pLuigiCount > pStarCount){
+    playerSuit = 4;
+    }
+    else if(pMarioCount > pCloudCount && pMarioCount > pFireFlowerCount && pMarioCount > pLuigiCount && pMarioCount > pMushroomCount && pMarioCount > pStarCount){
+    playerSuit = 5;
+    }
+    else if(pStarCount > pCloudCount && pStarCount > pFireFlowerCount && pStarCount > pLuigiCount && pStarCount > pMushroomCount && pStarCount > pMarioCount){
+    playerSuit = 6;
+    }
+    }
+    }
+    
     @FXML
     void drawClick(MouseEvent event) {
-        for (d=0; d < 5; d++) {
+        for (d = 0; d < 5; d++) {
             if (pCardImg[d].getLayoutY() == 650) {
                 suitCheck();
                 repick = true;
-                i=0;
+                i = 0;
                 pCardRandomizer();
                 pSuitCount();
-                
-                
-            }
-            else{
-            d++;
+               
+            } else {
+                d++;
             }
         }
+        Judge();
     }
 
     @FXML
     void Hold(MouseEvent event) {
-
+      Judge();
     }
 
     @FXML
     void betClick(MouseEvent event) {
-    wallet = Integer.parseInt(lblWallet.getText());
+        wallet = Integer.parseInt(lblWallet.getText());
         System.out.println(wallet);
-            wallet = wallet - 1;
-            lblWallet.setText("" + wallet);
+        wallet = wallet - 1;
+        lblWallet.setText("" + wallet);
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb
     ) {
@@ -388,6 +490,15 @@ public class LuigiPokerController implements Initializable {
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
 
+        pTextBottom.setVisible(false);
+        pTextTop.setVisible(false);
+        lTextBottom.setVisible(false);
+        lTextTop.setVisible(false);
+        textWLBase.setVisible(false);
+        textWin.setVisible(false);
+        textLose.setVisible(false);
+        
+        
         //Opening ,method start
         pCardRandomizer();
         pSuitCount();
