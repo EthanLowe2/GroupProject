@@ -91,11 +91,6 @@
             <Image url="@../Blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgBlankLuigi" fitHeight="115.0" fitWidth="388.0" layoutX="110.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank%20Luigi.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="imgBetY" fitHeight="69.0" fitWidth="69.0" layoutX="7.0" layoutY="475.0" onMouseClicked="#betClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Bet(Y).png" />
@@ -156,33 +151,7 @@
                </stops>
             </LinearGradient>
          </textFill></Label>
-      <Label fx:id="lTextBottom1" alignment="CENTER" contentDisplay="TOP" layoutX="150.0" layoutY="536.0" prefHeight="50.0" prefWidth="283.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
-         <font>
-            <Font name="Polygon Party" size="30.75" />
-         </font>
-      </Label>
-      <Label fx:id="lTextTop1" alignment="CENTER" contentDisplay="TOP" layoutX="143.0" layoutY="541.0" prefHeight="41.0" prefWidth="296.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
-         <font>
-            <Font name="Polygon Party" size="29.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="0.040380047505938266" endY="1.0" startX="0.03800475059382423">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.09898879379034042" green="0.6661945581436157" blue="0.8552631735801697" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
-      <Label fx:id="textWLBase" alignment="CENTER" contentDisplay="TOP" layoutX="100.0" layoutY="304.0" prefHeight="79.0" prefWidth="353.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Label fx:id="textLoseBase" alignment="CENTER" contentDisplay="TOP" layoutX="100.0" layoutY="304.0" prefHeight="79.0" prefWidth="353.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="Polygon Party" size="70.5" />
          </font>
@@ -208,7 +177,38 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label fx:id="textWin" alignment="CENTER" contentDisplay="TOP" layoutX="106.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Label fx:id="textTieBase" alignment="CENTER" contentDisplay="TOP" layoutX="110.0" layoutY="303.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="Tie" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="73.0" />
+         </font>
+      </Label>
+      <Label fx:id="textTie" alignment="CENTER" contentDisplay="TOP" layoutX="106.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="Tie" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="69.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.040380047505938266" endY="1.0" startX="0.03800475059382423">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8026315569877625" green="0.3917783498764038" blue="0.0074317739345133305" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="textWinBase" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="70.6" />
+         </font>
+      </Label>
+      <Label fx:id="textWin" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="Polygon Party" size="69.0" />
          </font>
@@ -223,6 +223,37 @@
                   <Stop offset="1.0">
                      <color>
                         <Color red="0.6973684430122375" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fx:id="imgBlankLuigi" fitHeight="115.0" fitWidth="388.0" layoutX="110.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank%20Luigi.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lTextBottom" alignment="CENTER" contentDisplay="TOP" layoutX="150.0" layoutY="536.0" prefHeight="50.0" prefWidth="283.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="30.5" />
+         </font>
+      </Label>
+      <Label fx:id="lTextTop" alignment="CENTER" contentDisplay="TOP" layoutX="144.0" layoutY="541.0" prefHeight="41.0" prefWidth="296.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="29.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.040380047505938266" endY="1.0" startX="0.03800475059382423">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.09898879379034042" green="0.6661945581436157" blue="0.8552631735801697" />
                      </color>
                   </Stop>
                </stops>
