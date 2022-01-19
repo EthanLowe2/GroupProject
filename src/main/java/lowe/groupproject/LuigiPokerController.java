@@ -27,7 +27,7 @@ public class LuigiPokerController implements Initializable {
     private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigi;
 
     @FXML
-    private Label lblWallet, pTextBottom, pTextTop, textLose, textLoseBase, textWin, lTextTop, lTextBottom, textTie, textWinBase, textTieBase;
+    private Label lblWallet, pTextBottom, pTextTop, textLose, textLoseBase, textWin, lTextTop, lTextBottom, lblPool, textTie, textWinBase, textTieBase;
 
     int pStarCount, pMarioCount, pLuigiCount, pFireFlowerCount, pMushroomCount, pCloudCount; //Ammount of each suit player holds
 
@@ -59,6 +59,8 @@ public class LuigiPokerController implements Initializable {
     int twoKind = 0;
 
     int wallet = 2410;
+    
+    int pool;
 
     boolean spot = true;
     boolean repick = false;
@@ -66,6 +68,50 @@ public class LuigiPokerController implements Initializable {
     ImageView pCardImg[];
     ImageView lCardImg[];
 
+    
+    void reset(){
+    d = 0;
+    i = 0;
+    repick = false;
+    spot = true;
+    twoKind = 0;
+    psOne = 0;
+    psTwo = 0;
+    H = 0;
+    L = 0;
+    junkMarkerTwo = 45;
+    junkMarkerOne = 45;
+    tStarCount = 0;
+    tMarioCount = 0;
+    tLuigiCount = 0;
+    tFireFlowerCount = 0; 
+    tMushroomCount = 0;
+    tCloudCount = 0;
+    pStarCount = 0;
+    pMarioCount = 0;
+    pLuigiCount = 0;
+    pFireFlowerCount = 0;
+    pMushroomCount = 0;
+    pCloudCount = 0;
+    pTextBottom.setVisible(false);
+    pTextTop.setVisible(false);
+    lTextBottom.setVisible(false);
+    lTextTop.setVisible(false);
+    textLoseBase.setVisible(false);
+    textWinBase.setVisible(false);
+    textTieBase.setVisible(false);
+    textWin.setVisible(false);
+    textLose.setVisible(false);
+    textTie.setVisible(false);
+    imgBlankLuigi.setVisible(true);
+    lblPool.setText("1"); 
+    pool = 1;
+    pCardRandomizer();
+    pSuitCount();
+    luigiHandRandomizer();
+    }
+    
+    
     void pCardRandomizer() { //Chooses Random cards for the player and assures no overlap
         if (repick == true) {
             PC[d] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
@@ -207,6 +253,8 @@ public class LuigiPokerController implements Initializable {
             ljunkRoll();
 
         }
+        wallet = wallet - 1;
+        lblWallet.setText("" + wallet);
     }
 
     void luigiHighCalc() { //Chooses suit for the dealers highest suit quantity in hand, and adds to the total card in suit amount, if the quantity of suit is too high it reruns method until an available suit is found
@@ -552,10 +600,18 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void betClick(MouseEvent event) {
+        if(wallet > 21){
         wallet = Integer.parseInt(lblWallet.getText());
-        System.out.println(wallet);
+        pool = pool + 1;
+        lblPool.setText("" + pool);
         wallet = wallet - 1;
         lblWallet.setText("" + wallet);
+        }
+        else{
+        
+        }
+
+        //reset();
     }
 
     @Override
