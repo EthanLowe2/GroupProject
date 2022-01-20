@@ -14,7 +14,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+
 
 /**
  * FXML Controller class
@@ -28,6 +35,12 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     private Label lblWallet, pTextBottom, pTextTop, textLose, textLoseBase, textWin, lTextTop, lTextBottom, lblPool, textTie, textWinBase, textTieBase;
+
+    @FXML
+    private MediaView media;
+
+    @FXML
+    private AnchorPane paneVideo;
 
     int pStarCount, pMarioCount, pLuigiCount, pFireFlowerCount, pMushroomCount, pCloudCount; //Ammount of each suit player holds
 
@@ -59,7 +72,7 @@ public class LuigiPokerController implements Initializable {
     int twoKind = 0;
 
     int wallet = 2410;
-    
+
     int pool;
 
     boolean spot = true;
@@ -68,50 +81,51 @@ public class LuigiPokerController implements Initializable {
     ImageView pCardImg[];
     ImageView lCardImg[];
 
-    
-    void reset(){
-    d = 0;
-    i = 0;
-    repick = false;
-    spot = true;
-    twoKind = 0;
-    psOne = 0;
-    psTwo = 0;
-    H = 0;
-    L = 0;
-    junkMarkerTwo = 45;
-    junkMarkerOne = 45;
-    tStarCount = 0;
-    tMarioCount = 0;
-    tLuigiCount = 0;
-    tFireFlowerCount = 0; 
-    tMushroomCount = 0;
-    tCloudCount = 0;
-    pStarCount = 0;
-    pMarioCount = 0;
-    pLuigiCount = 0;
-    pFireFlowerCount = 0;
-    pMushroomCount = 0;
-    pCloudCount = 0;
-    pTextBottom.setVisible(false);
-    pTextTop.setVisible(false);
-    lTextBottom.setVisible(false);
-    lTextTop.setVisible(false);
-    textLoseBase.setVisible(false);
-    textWinBase.setVisible(false);
-    textTieBase.setVisible(false);
-    textWin.setVisible(false);
-    textLose.setVisible(false);
-    textTie.setVisible(false);
-    imgBlankLuigi.setVisible(true);
-    lblPool.setText("1"); 
-    pool = 1;
-    pCardRandomizer();
-    pSuitCount();
-    luigiHandRandomizer();
+    //private static final String MEDIA_URL = "Casino.mp4";
+    //private MediaPlayer mediaPlayer;
+
+    void reset() {
+        d = 0;
+        i = 0;
+        repick = false;
+        spot = true;
+        twoKind = 0;
+        psOne = 0;
+        psTwo = 0;
+        H = 0;
+        L = 0;
+        junkMarkerTwo = 45;
+        junkMarkerOne = 45;
+        tStarCount = 0;
+        tMarioCount = 0;
+        tLuigiCount = 0;
+        tFireFlowerCount = 0;
+        tMushroomCount = 0;
+        tCloudCount = 0;
+        pStarCount = 0;
+        pMarioCount = 0;
+        pLuigiCount = 0;
+        pFireFlowerCount = 0;
+        pMushroomCount = 0;
+        pCloudCount = 0;
+        pTextBottom.setVisible(false);
+        pTextTop.setVisible(false);
+        lTextBottom.setVisible(false);
+        lTextTop.setVisible(false);
+        textLoseBase.setVisible(false);
+        textWinBase.setVisible(false);
+        textTieBase.setVisible(false);
+        textWin.setVisible(false);
+        textLose.setVisible(false);
+        textTie.setVisible(false);
+        imgBlankLuigi.setVisible(true);
+        lblPool.setText("1");
+        pool = 1;
+        pCardRandomizer();
+        pSuitCount();
+        luigiHandRandomizer();
     }
-    
-    
+
     void pCardRandomizer() { //Chooses Random cards for the player and assures no overlap
         if (repick == true) {
             PC[d] = ThreadLocalRandom.current().nextInt(1, 36 + 1);
@@ -502,9 +516,9 @@ public class LuigiPokerController implements Initializable {
         if (pStarCount == 2) {
             twoKind = twoKind + 2;
             if (psOne == 0) {
-                psOne = 1;
+                psOne = 6;
             } else {
-                psTwo = 1;
+                psTwo = 6;
             }
         }
         //Figures players hand
@@ -600,27 +614,57 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void betClick(MouseEvent event) {
-        if(wallet > 21){
-        wallet = Integer.parseInt(lblWallet.getText());
-        pool = pool + 1;
-        lblPool.setText("" + pool);
-        wallet = wallet - 1;
-        lblWallet.setText("" + wallet);
-        }
-        else{
-        
+        if (wallet > 21) {
+            wallet = Integer.parseInt(lblWallet.getText());
+            pool = pool + 1;
+            lblPool.setText("" + pool);
+            wallet = wallet - 1;
+            lblWallet.setText("" + wallet);
+            reset();
+        } else {
+            reset();
         }
 
         //reset();
     }
 
+    void theme() {
+        for (int m = 0; m < 100; m++) { // Plays main theme 
+            MediaPlayer player;
+            player = new MediaPlayer((new Media(getClass().getResource("/Main Theme.mp3").toString())));
+            player.play();
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(121800), ae -> theme()));
+
+        }
+    }
+
+    @FXML
+    void video() {
+        //Media media = new Media("Casino.mp4");
+
+        //mediaPlayer = new MediaPlayer(media);
+
+        //mediaPlayer.setAutoPlay(true);
+
+         
+        
+    }
+
     @Override
-    public void initialize(URL url, ResourceBundle rb
+    public void initialize(URL location, ResourceBundle resources
     ) {
         ImageView picArray[] = {imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5};//Image array
         pCardImg = picArray; //Transfer the array to top
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
+
+        // System.out.println(location.toString());
+        //System.out.println(this.getClass().getClass().getResource(MEDIA_URL).toExternalForm());
+        //mediaPlayer = new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
+        //media.setMediaPlayer(mediaPlayer);
+        //  media = new MediaView(mediaPlayer);
+        //mediaPlayer.setAutoPlay(true);
+        //media.setMediaPlayer(mediaPlayer);
 
         pTextBottom.setVisible(false);
         pTextTop.setVisible(false);
@@ -637,6 +681,8 @@ public class LuigiPokerController implements Initializable {
         pCardRandomizer();
         pSuitCount();
         luigiHandRandomizer();
+        theme();
+        video();
     }
 
 }

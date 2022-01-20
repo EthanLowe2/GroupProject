@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -245,5 +246,10 @@
             <Font name="The Wild Breath of Zelda" size="22.0" />
          </font>
       </Label>
+      <AnchorPane fx:id="paneVideo" prefHeight="390.0" prefWidth="520.0">
+         <children>
+            <MediaView fx:id="media" fitHeight="388.0" fitWidth="519.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
