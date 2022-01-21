@@ -40,7 +40,7 @@ public class StartDuckController implements Initializable {
             MainApp.DuckTime = newtime;        
             MainApp.setRoot("Duck");
         }
-        if (txtTime.getText().equals("0") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3")|| txtTime.getText().equals("4")|| txtTime.getText().equals("5")){
+        if (txtTime.getText().equals("0") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3")|| txtTime.getText().equals("4")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);

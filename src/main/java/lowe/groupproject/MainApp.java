@@ -16,7 +16,7 @@ public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
-        setRoot("HorseRace","");
+        setRoot("Duck","");
     }
 
     static void setRoot(String fxml) throws IOException {
