@@ -1,10 +1,11 @@
 package lowe.groupproject;
 /*
-Put header here
-
-
+Ethan lowe
+01/08/22
+end screen
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,14 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class FXMLController implements Initializable {
+public class ReturnController implements Initializable {
     
     @FXML
-    private Label lblOut;
-    
+    void btnNo(ActionEvent event) {
+        System.exit(0);
+    }
+
     @FXML
-    private void btnClickAction(ActionEvent event) {
-        lblOut.setText("Hello World!");
+    void btnYes(ActionEvent event) throws IOException {
+        MainApp.setRoot("StartDuck"); //change to move to the title screen not exit :)
     }
     
     @Override
