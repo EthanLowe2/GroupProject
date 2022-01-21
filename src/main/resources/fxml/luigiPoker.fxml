@@ -10,14 +10,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="808.0" prefWidth="501.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.LuigiPokerController">
+<AnchorPane id="AnchorPane" prefHeight="808.0" prefWidth="514.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lowe.groupproject.LuigiPokerController">
    <children>
       <ImageView fx:id="imgBetY" fitHeight="77.0" fitWidth="62.0" layoutX="7.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Bet(O).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgBoard" fitHeight="419.0" fitWidth="540.0" layoutX="-1.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgBoard" fitHeight="419.0" fitWidth="520.0" layoutX="-1.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../ClearBoard.png" />
          </image>
@@ -35,11 +35,6 @@
       <ImageView fx:id="imgHold" fitHeight="69.0" fitWidth="276.0" layoutX="124.0" layoutY="575.0" onMouseClicked="#holdClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Hold.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgCoin1" fitHeight="31.0" fitWidth="67.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Coin.png" />
          </image>
       </ImageView>
       <Label fx:id="lblWallet" layoutX="52.0" layoutY="428.0" prefHeight="26.0" prefWidth="52.0" text="2410" textFill="#ffee00">
@@ -132,12 +127,53 @@
                </stops>
             </LinearGradient>
          </textFill></Label>
-      <Label fx:id="textLoseBase" alignment="CENTER" contentDisplay="TOP" layoutX="100.0" layoutY="304.0" prefHeight="79.0" prefWidth="353.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
+      <ImageView fx:id="imgBlankLuigi" fitHeight="115.0" fitWidth="388.0" layoutX="110.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Blank%20Luigi.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lTextBottom" alignment="CENTER" contentDisplay="TOP" layoutX="150.0" layoutY="536.0" prefHeight="50.0" prefWidth="283.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="Polygon Party" size="70.5" />
+            <Font name="Polygon Party" size="30.5" />
          </font>
       </Label>
-      <Label fx:id="textLose" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="304.0" prefHeight="79.0" prefWidth="310.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Label fx:id="lTextTop" alignment="CENTER" contentDisplay="TOP" layoutX="144.0" layoutY="541.0" prefHeight="41.0" prefWidth="296.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="29.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.040380047505938266" endY="1.0" startX="0.03800475059382423">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.09898879379034042" green="0.6661945581436157" blue="0.8552631735801697" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <AnchorPane fx:id="paneVideo" prefHeight="390.0" prefWidth="520.0">
+         <children>
+            <MediaView fx:id="media" fitHeight="388.0" fitWidth="520.0" />
+            <Label fx:id="lblPool" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="342.0" prefHeight="31.0" prefWidth="29.0" style="-fx-background-color: Clear;" text="20" textFill="#ffee00">
+               <font>
+                  <Font name="The Wild Breath of Zelda" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="textWinBase" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Polygon Party" size="70.6" />
+         </font>
+      </Label>
+      <Label fx:id="textWin" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="Polygon Party" size="69.0" />
          </font>
@@ -151,7 +187,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.23201754689216614" blue="0.6052631735801697" />
+                        <Color red="0.6973684430122375" />
                      </color>
                   </Stop>
                </stops>
@@ -184,12 +220,12 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label fx:id="textWinBase" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Label fx:id="textLoseBase" alignment="CENTER" contentDisplay="TOP" layoutX="100.0" layoutY="304.0" prefHeight="79.0" prefWidth="353.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="Polygon Party" size="70.6" />
+            <Font name="Polygon Party" size="70.5" />
          </font>
       </Label>
-      <Label fx:id="textWin" alignment="CENTER" contentDisplay="TOP" layoutX="91.0" layoutY="304.0" prefHeight="79.0" prefWidth="342.0" style="bor: Black;" text="You Win!" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Label fx:id="textLose" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="304.0" prefHeight="79.0" prefWidth="310.0" style="bor: Black;" text="Too Bad" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="Polygon Party" size="69.0" />
          </font>
@@ -203,53 +239,12 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.6973684430122375" />
+                        <Color red="0.23201754689216614" blue="0.6052631735801697" />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </textFill>
       </Label>
-      <ImageView fx:id="imgBlankLuigi" fitHeight="115.0" fitWidth="388.0" layoutX="110.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Blank%20Luigi.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="lTextBottom" alignment="CENTER" contentDisplay="TOP" layoutX="150.0" layoutY="536.0" prefHeight="50.0" prefWidth="283.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
-         <font>
-            <Font name="Polygon Party" size="30.5" />
-         </font>
-      </Label>
-      <Label fx:id="lTextTop" alignment="CENTER" contentDisplay="TOP" layoutX="144.0" layoutY="541.0" prefHeight="41.0" prefWidth="296.0" style="bor: Black;" text="3 of a Kind" textOverrun="CENTER_WORD_ELLIPSIS">
-         <font>
-            <Font name="Polygon Party" size="29.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="0.040380047505938266" endY="1.0" startX="0.03800475059382423">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.09898879379034042" green="0.6661945581436157" blue="0.8552631735801697" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
-      <Label fx:id="lblPool" layoutX="26.0" layoutY="358.0" prefHeight="31.0" prefWidth="28.0" style="-fx-background-color: Black;" text=" 1" textFill="#ffee00">
-         <font>
-            <Font name="The Wild Breath of Zelda" size="22.0" />
-         </font>
-      </Label>
-      <AnchorPane fx:id="paneVideo" prefHeight="390.0" prefWidth="520.0">
-         <children>
-            <MediaView fx:id="media" fitHeight="388.0" fitWidth="519.0" />
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>

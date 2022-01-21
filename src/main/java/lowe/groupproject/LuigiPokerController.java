@@ -61,6 +61,7 @@ public class LuigiPokerController implements Initializable {
     int junkMarkerOne = 45;
     int junkMarkerTwo = 45;
 
+    boolean g = true;
     int H = 0, L = 0; //ints for setting luigi Card images
 
     int d = 0;
@@ -77,7 +78,7 @@ public class LuigiPokerController implements Initializable {
 
     boolean spot = true;
     boolean repick = false;
-
+    MediaPlayer vid;
     ImageView pCardImg[];
     ImageView lCardImg[];
 
@@ -629,25 +630,26 @@ public class LuigiPokerController implements Initializable {
     }
 
     void theme() {
-        for (int m = 0; m < 100; m++) { // Plays main theme 
+        //for (int m = 0; m < 3; m++) { // Plays main theme 
             MediaPlayer player;
             player = new MediaPlayer((new Media(getClass().getResource("/Main Theme.mp3").toString())));
             player.play();
-            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(121800), ae -> theme()));
+            //Timeline timeline = new Timeline(new KeyFrame(Duration.millis(121800), ae -> theme()));
+            
 
-        }
+        //}
+       // theme();
     }
 
     @FXML
-    void video() {
-        //Media media = new Media("Casino.mp4");
-
-        //mediaPlayer = new MediaPlayer(media);
-
-        //mediaPlayer.setAutoPlay(true);
-
-         
-        
+    void video(){
+        //for (int v = 0; v < 3; v++){
+        vid = new MediaPlayer((new Media(getClass().getResource("/Casino.mp4").toString())));
+        media.setMediaPlayer(vid);
+        vid.setCycleCount(Timeline.INDEFINITE);
+        vid.play();
+        //}
+           // video();
     }
 
     @Override
