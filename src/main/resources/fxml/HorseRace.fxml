@@ -54,7 +54,6 @@
       <Ellipse fx:id="shpcirText" fill="WHITE" layoutX="122.0" layoutY="413.0" radiusX="113.0" radiusY="60.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="lblRound" layoutX="66.0" layoutY="413.0" text="like to do this round?" />
       <Label fx:id="lblWel" layoutX="52.0" layoutY="392.0" text="Welcome What would you" />
-      <Button fx:id="btnBet" focusTraversable="false" layoutX="113.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnBetA" text="Bet" />
       <ImageView fx:id="imgArrow1" fitHeight="45.0" fitWidth="136.0" layoutX="199.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Arrow.png" />
@@ -89,7 +88,7 @@
       <Ellipse fx:id="shpcirText2" fill="WHITE" layoutX="594.0" layoutY="128.0" radiusX="113.0" radiusY="60.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Label fx:id="lblHorse" layoutX="512.0" layoutY="128.0" text=" what Horse you are Betting on" visible="false" />
       <Label fx:id="lblRacer" layoutX="514.0" layoutY="106.0" text="Just Click on a Racer to confim" visible="false" />
-      <Button fx:id="btnCurrent" focusTraversable="false" layoutX="102.0" layoutY="500.0" mnemonicParsing="false" onAction="#btnCurrentA" text="Current Bets" />
+      <Button fx:id="btnCurrent" focusTraversable="false" layoutX="110.0" layoutY="539.0" mnemonicParsing="false" onAction="#btnCurrentA" text="Bets" />
       <ImageView fx:id="imgiPad" fitHeight="629.0" fitWidth="469.0" layoutX="184.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../ipad.png" />
@@ -252,6 +251,17 @@
       <Label layoutX="117.0" layoutY="488.0" text="GO!" visible="false">
          <font>
             <Font size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFinish" layoutX="855.0" layoutY="6.0" prefHeight="454.0" prefWidth="9.0" />
+      <Label fx:id="lblDisplayWin" layoutX="166.0" layoutY="152.0" prefHeight="149.0" prefWidth="648.0" text="HORSE 5 WINS" visible="false">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWinnerPoints" layoutX="344.0" layoutY="284.0" text="YOU WIN 000 Points" visible="false">
+         <font>
+            <Font size="32.0" />
          </font>
       </Label>
    </children>
