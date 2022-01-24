@@ -12,11 +12,12 @@ import java.io.IOException;
 public class MainApp extends Application {
     private static Stage stage;
     public static int DuckTime;
+    public static int money = 50;
     
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
-        setRoot("StartDuck","Duck");
+        setRoot("luigiPoker","LuigiPoker");
     }
 
     static void setRoot(String fxml) throws IOException {
