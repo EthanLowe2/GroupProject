@@ -24,6 +24,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import static lowe.groupproject.MainApp.scene;
 
 /**
  * FXML Controller class
@@ -73,7 +74,9 @@ public class HorseRaceController implements Initializable {
     double Bet4;
     double Bet5;
     int currentbet;
+    int currenthorse;
     DecimalFormat myFormat = new DecimalFormat("0.00");
+    DecimalFormat newFormat = new DecimalFormat("0");
     
 
     void moveHorse() {
@@ -91,11 +94,21 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            lblWinnerPoints.setText("YOU WON" + currentbet*Bet1);
+            if (currenthorse == 1){
+                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
+                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
+             btnCurrent.setVisible(true);
+            btnSitout.setVisible(true);
         }
         if (collision(Horse2, lblFinish)){
             horsemove.stop();
@@ -106,11 +119,20 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            lblWinnerPoints.setText("YOU WON" + currentbet*Bet2);
+            if (currenthorse == 2){
+                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            if (currenthorse == 1 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
+                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
+            btnCurrent.setVisible(true);
+            btnSitout.setVisible(true);
         }
         if (collision(Horse3, lblFinish)){
             horsemove.stop();
@@ -121,11 +143,20 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            lblWinnerPoints.setText("YOU WON" + currentbet*Bet3);
+            if (currenthorse == 3){
+                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            if (currenthorse == 2 || currenthorse == 1|| currenthorse == 4|| currenthorse == 5){
+                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
+            btnCurrent.setVisible(true);
+            btnSitout.setVisible(true);
         }
         if (collision(Horse4, lblFinish)){
             horsemove.stop();
@@ -136,11 +167,20 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            lblWinnerPoints.setText("YOU WON" + currentbet*Bet4);
+            if (currenthorse ==4){
+                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 1|| currenthorse == 5){
+                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
+             btnCurrent.setVisible(true);
+            btnSitout.setVisible(true);
         }
         if (collision(Horse5, lblFinish)){
             horsemove.stop();
@@ -151,11 +191,20 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            lblWinnerPoints.setText("YOU WON" + currentbet*Bet5);
+            if (currenthorse == 5){
+                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
+            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 1){
+                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format( currentbet*Bet1)+ " Coins");
+                lblWinnerPoints.setVisible(true);
+            }
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
+             btnCurrent.setVisible(true);
+            btnSitout.setVisible(true);
         }
         
     }
@@ -344,6 +393,13 @@ public class HorseRaceController implements Initializable {
         lblBetting.setVisible(true);
         btnClose.setVisible(true);
         btnConfirm.setVisible(true);
+        lblDisplayWin.setVisible(false);
+        lblWinnerPoints.setVisible(false);
+        txtBetting1.setText("");
+        txtBetting2.setText("");
+        txtBetting3.setText("");
+        txtBetting4.setText("");
+        txtBetting5.setText("");
         lblRate1.setText(""+myFormat.format(Bet1));
         lblRate2.setText(""+myFormat.format(Bet2));
         lblRate3.setText(""+myFormat.format(Bet3));
@@ -432,20 +488,25 @@ public class HorseRaceController implements Initializable {
         Ready = true;
         if (!txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
             currentbet = Integer.parseInt(txtBetting1.getText());
+            currenthorse = 1;
         }
         if (txtBetting1.getText().equals("") && !txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
             currentbet = Integer.parseInt(txtBetting2.getText());
+            currenthorse = 2;
         }
         if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && !txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
             currentbet = Integer.parseInt(txtBetting3.getText());
+            currenthorse = 3;
         }
         if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && !txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
             currentbet = Integer.parseInt(txtBetting4.getText());
+            currenthorse = 4;
         }
         if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && !txtBetting5.getText().equals("")){
             currentbet = Integer.parseInt(txtBetting5.getText());
+            currenthorse = 5;
         }
-        
+        MainApp.scene.getRoot().requestFocus();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="633.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="lowe.groupproject.RulesController">
+   <children>
+      <ImageView fx:id="imgDuck" fitHeight="286.0" fitWidth="185.0" layoutX="32.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../DuckDisplayPicture.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnLuigi" layoutX="279.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnLuigiA" text="Luigi Poker" />
+      <Button fx:id="btnDuck" layoutX="83.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnDuckA" text="Duck Hunt" visible="false" />
+      <Button fx:id="btnHorse" layoutX="484.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnHorseA" text="Horse Racing" />
+      <ImageView fx:id="imgLuigi" fitHeight="286.0" fitWidth="193.0" layoutX="221.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../luigiIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgHorse" fitHeight="286.0" fitWidth="174.0" layoutX="441.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../HorseDisplayPicture.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="129.0" layoutY="14.0" prefHeight="336.0" prefWidth="399.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>

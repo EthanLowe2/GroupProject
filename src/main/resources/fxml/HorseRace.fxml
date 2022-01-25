@@ -224,12 +224,12 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBetting1" layoutX="437.0" layoutY="92.0" promptText="Enter Betting Amount" visible="false" />
+      <TextField fx:id="txtBetting1" focusTraversable="false" layoutX="437.0" layoutY="92.0" promptText="Enter Betting Amount" visible="false" />
       <Label fx:id="lblBettingamount1" layoutX="469.0" layoutY="72.0" text="Betting Amount" visible="false" />
-      <TextField fx:id="txtBetting2" layoutX="434.0" layoutY="176.0" promptText="Enter Betting Amount" visible="false" />
-      <TextField fx:id="txtBetting3" layoutX="434.0" layoutY="265.0" promptText="Enter Betting Amount" visible="false" />
-      <TextField fx:id="txtBetting4" layoutX="434.0" layoutY="358.0" promptText="Enter Betting Amount" visible="false" />
-      <TextField fx:id="txtBetting5" layoutX="434.0" layoutY="461.0" promptText="Enter Betting Amount" visible="false" />
+      <TextField fx:id="txtBetting2" focusTraversable="false" layoutX="434.0" layoutY="176.0" promptText="Enter Betting Amount" visible="false" />
+      <TextField fx:id="txtBetting3" focusTraversable="false" layoutX="434.0" layoutY="265.0" promptText="Enter Betting Amount" visible="false" />
+      <TextField fx:id="txtBetting4" focusTraversable="false" layoutX="434.0" layoutY="358.0" promptText="Enter Betting Amount" visible="false" />
+      <TextField fx:id="txtBetting5" focusTraversable="false" layoutX="434.0" layoutY="461.0" promptText="Enter Betting Amount" visible="false" />
       <Label fx:id="lblBettingamount2" layoutX="469.0" layoutY="154.0" text="Betting Amount" visible="false" />
       <Label fx:id="lblBettingamount3" layoutX="469.0" layoutY="246.0" text="Betting Amount" visible="false" />
       <Label fx:id="lblBettingamount4" layoutX="469.0" layoutY="338.0" text="Betting Amount" visible="false" />
