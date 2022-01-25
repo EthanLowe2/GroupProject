@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -37,28 +38,48 @@ public class RulesController implements Initializable {
 
     @FXML
     private ImageView imgHorse;
+    
+    @FXML
+    private ImageView imgExplanation;
+    @FXML
+    private Button btnX;
+    
     @FXML
     void btnDuckA(ActionEvent event) {
-        imgDuck.setVisible(false);
-        imgHorse.setVisible(false);
-        imgLuigi.setVisible(false);
-        btnLuigi.setVisible(false);
-        btnHorse.setVisible(false);
-        btnDuck.setVisible(false);
+        Disapeer();
+        btnX.setVisible(true);
+        imgExplanation.setVisible(true);
+        imgExplanation.setImage(new Image(getClass().getResource("/DuckHuntExplane.PNG").toString()));
     }
 
     @FXML
     void btnHorseA(ActionEvent event) {
-        imgDuck.setVisible(false);
-        imgHorse.setVisible(false);
-        imgLuigi.setVisible(false);
-        btnLuigi.setVisible(false);
-        btnHorse.setVisible(false);
-        btnDuck.setVisible(false);
+        Disapeer();
+        btnX.setVisible(true);
+        imgExplanation.setVisible(true);
+        imgExplanation.setImage(new Image(getClass().getResource("/HorseRacingRules.PNG").toString()));
     }
 
     @FXML
     void btnLuigiA(ActionEvent event) {
+        Disapeer();
+        btnX.setVisible(true);
+        imgExplanation.setVisible(true);
+    }
+    
+    @FXML
+    void btnXA(ActionEvent event) {
+        imgDuck.setVisible(true);
+        imgHorse.setVisible(true);
+        imgLuigi.setVisible(true);
+        btnLuigi.setVisible(true);
+        btnHorse.setVisible(true);
+        btnDuck.setVisible(true);
+        imgExplanation.setVisible(false);
+        btnX.setVisible(false);
+    }
+    
+    void Disapeer(){
         imgDuck.setVisible(false);
         imgHorse.setVisible(false);
         imgLuigi.setVisible(false);
