@@ -24,7 +24,7 @@ import javafx.util.Duration;
 public class DuckController implements Initializable {
 
     @FXML
-    private Label lblcount, lblTimer, lblPoints, lblLose;
+    private Label lblcount, lblTimer, lblPoints, lblLose,lblContinue,lblCountContinue;
 
     @FXML
     private ImageView imgBullet1, imgBullet2, imgBullet3, imgBullet4, imgBullet5;
@@ -40,13 +40,6 @@ public class DuckController implements Initializable {
 
     @FXML
     private Polygon PDuck0, PDuck1, PDuck2, PDuck3, PDuck4, PDuck5;
-    
-    
-    @FXML
-    private Label lblContinue;
-
-    @FXML
-    private Label lblCountContinue;
 
     Timeline clock = new Timeline(new KeyFrame(Duration.millis(500), ae -> timer()));
     Timeline count = new Timeline(new KeyFrame(Duration.seconds(1), ae -> CountDown()));
