@@ -21,7 +21,8 @@ import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 
 /**
  * FXML Controller class
@@ -31,8 +32,9 @@ import javafx.animation.Timeline;
 public class LuigiPokerController implements Initializable {
 
     @FXML
-    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigi;
+    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigi, exit;
 
+     
     @FXML
     private Label lblWallet, pTextBottom, pTextTop, textLose, textLoseBase, textWin, lTextTop, lTextBottom, lblPool, textTie, textWinBase, textTieBase;
 
@@ -71,23 +73,35 @@ public class LuigiPokerController implements Initializable {
     int psOne, psTwo; //int for checking high and low when two of a kind is present in players hand
 
     int twoKind = 0;
-
-    int wallet = 2410;
-
+    int Money;
     int pool;
+    boolean live = true;
 
+    boolean fail = false;
+    boolean betPhase = false;
     boolean spot = true;
     boolean repick = false;
+
     MediaPlayer vid;
+
     ImageView pCardImg[];
     ImageView lCardImg[];
-
-    //private static final String MEDIA_URL = "Casino.mp4";
-    //private MediaPlayer mediaPlayer;
+    Timeline startDelay = new Timeline(new KeyFrame(Duration.millis(3000), ae -> video()));
+    Timeline Vid = new Timeline(new KeyFrame(Duration.millis(66000), ae -> video()));
+    Timeline Reset = new Timeline(new KeyFrame(Duration.millis(5000), ae -> reset()));
+    Timeline Bet = new Timeline(new KeyFrame(Duration.millis(1000), ae -> bet()));
+    Timeline oBet = new Timeline(new KeyFrame(Duration.millis(1000), ae -> bet()));
 
     void reset() {
+        Reset.stop();
+        pool = 0;
+        Money--;
+        pool++;
+        lblPool.setText("" + pool);
+        lblWallet.setText("" + Money);
         d = 0;
         i = 0;
+        live = true;
         repick = false;
         spot = true;
         twoKind = 0;
@@ -95,8 +109,8 @@ public class LuigiPokerController implements Initializable {
         psTwo = 0;
         H = 0;
         L = 0;
-        junkMarkerTwo = 45;
         junkMarkerOne = 45;
+        junkMarkerTwo = 45;
         tStarCount = 0;
         tMarioCount = 0;
         tLuigiCount = 0;
@@ -121,7 +135,7 @@ public class LuigiPokerController implements Initializable {
         textTie.setVisible(false);
         imgBlankLuigi.setVisible(true);
         lblPool.setText("1");
-        pool = 1;
+
         pCardRandomizer();
         pSuitCount();
         luigiHandRandomizer();
@@ -214,7 +228,7 @@ public class LuigiPokerController implements Initializable {
             }
             ljunkRoll();
 
-        } else if (luigiHandCalc <= 88 && luigiHandCalc >= 75) { //Full house, 13%
+        } else if (luigiHandCalc <= 88 && luigiHandCalc >= 79) { //Full house, 10%
             luigiHand = 5; //point system for luigi's hand type to compare to players later
             luigiHighWeight = 3; //point system for luigi's high suit quantity to use for finding an available suit that has enough cards
             luigiLowWeight = 2;//point system for luigi's low suit quantity to use for finding an available suit that has enough cards
@@ -229,7 +243,7 @@ public class LuigiPokerController implements Initializable {
                 LowWeightImgSet();
             }
 
-        } else if (luigiHandCalc <= 74 && luigiHandCalc >= 51) { //Three kind, 20%
+        } else if (luigiHandCalc <= 78 && luigiHandCalc >= 51) { //Three kind, 23%
             luigiHand = 4;
             luigiHighWeight = 3;
             lTextTop.setText("3 of a Kind");
@@ -240,7 +254,7 @@ public class LuigiPokerController implements Initializable {
             }
             ljunkRoll();
 
-        } else if (luigiHandCalc <= 50 && luigiHandCalc >= 21) { //Two pairs, 30%
+        } else if (luigiHandCalc <= 50 && luigiHandCalc >= 31) { //Two pairs, 20%
             luigiHand = 3;
             luigiHighWeight = 2;
             luigiLowWeight = 2;
@@ -256,7 +270,7 @@ public class LuigiPokerController implements Initializable {
             }
             ljunkRoll();
 
-        } else if (luigiHandCalc <= 20 && luigiHandCalc >= 1) { //One pair, 20%
+        } else if (luigiHandCalc <= 30 && luigiHandCalc >= 1) { //One pair, 30%
             luigiHand = 2;
             luigiHighWeight = 2;
             lTextTop.setText("1 Pair");
@@ -268,8 +282,7 @@ public class LuigiPokerController implements Initializable {
             ljunkRoll();
 
         }
-        wallet = wallet - 1;
-        lblWallet.setText("" + wallet);
+
     }
 
     void luigiHighCalc() { //Chooses suit for the dealers highest suit quantity in hand, and adds to the total card in suit amount, if the quantity of suit is too high it reruns method until an available suit is found
@@ -342,46 +355,6 @@ public class LuigiPokerController implements Initializable {
         }
     }
 
-    void ljunkRoll() {
-
-        for (int J = 0; H + L + J < 5;) {
-            junk = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-            if (junk != luigiSuit && junk != luigiLowSuit && junk != junkMarkerOne && junk != junkMarkerTwo) {
-                if (junk == 6 && (tStarCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Star.png").toString()));
-                    tStarCount++;
-                } else if (junk == 5 && (tMarioCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mario.png").toString()));
-                    tMarioCount++;
-                } else if (junk == 4 && (tLuigiCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
-                    tLuigiCount++;
-                } else if (junk == 3 && (tFireFlowerCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
-                    tFireFlowerCount++;
-                } else if (junk == 2 && (tMushroomCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
-                    tMushroomCount++;
-                } else if (junk == 1 && (tCloudCount) < 6) {
-                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
-                    tCloudCount++;
-                }
-                J++;
-            } else {
-                ljunkRoll();
-            }
-        }
-    }
-
-    void junkMarker() { // blocks to assure that no random draw will affect the final hand
-        if (junkMarkerOne == 45) {
-            junkMarkerOne = junk;
-        } else if (junkMarkerOne != 45 && junkMarkerTwo == 45) {
-            junkMarkerTwo = junk;
-        }
-
-    }
-
     void LowWeightImgSet() {
         if (luigiLowSuit == 6) {
             lCardImg[H + L].setImage(new Image(getClass().getResource("/Star.png").toString()));
@@ -398,22 +371,76 @@ public class LuigiPokerController implements Initializable {
         }
     }
 
-    @FXML
-    void Draw(MouseEvent event) {
-        ImageView img = (ImageView) event.getSource();
-        if (img.getLayoutY() == 685) {
+    void ljunkRoll() {
 
-            img.setLayoutY(650);
+        for (int J = 0; H + L + J < 5;) {
+            junk = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+            if (junk != luigiSuit && junk != luigiLowSuit && junk != junkMarkerOne && junk != junkMarkerTwo) {
+                if (junk == 6 && (tStarCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Star.png").toString()));
+                    J = J + 1;
+                    tStarCount++;
+                    junkMarker();
+                } else if (junk == 5 && (tMarioCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mario.png").toString()));
+                    J = J + 1;
+                    tMarioCount++;
+                    junkMarker();
+                } else if (junk == 4 && (tLuigiCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Luigi.png").toString()));
+                    J = J + 1;
+                    tLuigiCount++;
+                    junkMarker();
+                } else if (junk == 3 && (tFireFlowerCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/FireFlower.png").toString()));
+                    J = J + 1;
+                    tFireFlowerCount++;
+                    junkMarker();
+                } else if (junk == 2 && (tMushroomCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Mushroom.png").toString()));
+                    J = J + 1;
+                    tMushroomCount++;
+                    junkMarker();
+                } else if (junk == 1 && (tCloudCount) < 6) {
+                    lCardImg[J + H + L].setImage(new Image(getClass().getResource("/Cloud.png").toString()));
+                    J = J + 1;
+                    tCloudCount++;
+                    junkMarker();
+                }
 
-        } else if (img.getLayoutY() == 650) {
-
-            img.setLayoutY(685);
+            }
 
         }
-        if (imgPlayerC1.getLayoutY() == 650 || imgPlayerC2.getLayoutY() == 650 || imgPlayerC3.getLayoutY() == 650 || imgPlayerC4.getLayoutY() == 650 || imgPlayerC5.getLayoutY() == 650) {
-            imgHold.setVisible(false);
-        } else if (imgPlayerC1.getLayoutY() == 685 && imgPlayerC2.getLayoutY() == 685 && imgPlayerC3.getLayoutY() == 685 && imgPlayerC4.getLayoutY() == 685 && imgPlayerC5.getLayoutY() == 685) {
-            imgHold.setVisible(true);
+
+    }
+
+    void junkMarker() { // blocks to assure that no random draw will affect the final hand
+        if (junkMarkerOne == 45) {
+            junkMarkerOne = junk;
+        } else if (junkMarkerOne != 45 && junkMarkerTwo == 45) {
+            junkMarkerTwo = junk;
+        }
+
+    }
+
+    @FXML
+    void Draw(MouseEvent event) {
+        if (live == true) {
+            ImageView img = (ImageView) event.getSource();
+            if (img.getLayoutY() == 685) {
+
+                img.setLayoutY(650);
+
+            } else if (img.getLayoutY() == 650) {
+
+                img.setLayoutY(685);
+
+            }
+            if (imgPlayerC1.getLayoutY() == 650 || imgPlayerC2.getLayoutY() == 650 || imgPlayerC3.getLayoutY() == 650 || imgPlayerC4.getLayoutY() == 650 || imgPlayerC5.getLayoutY() == 650) {
+                imgHold.setVisible(false);
+            } else if (imgPlayerC1.getLayoutY() == 685 && imgPlayerC2.getLayoutY() == 685 && imgPlayerC3.getLayoutY() == 685 && imgPlayerC4.getLayoutY() == 685 && imgPlayerC5.getLayoutY() == 685) {
+                imgHold.setVisible(true);
+            }
         }
 
     }
@@ -423,7 +450,7 @@ public class LuigiPokerController implements Initializable {
         if (pCardImg[d].getAccessibleText().equals("Star")) {
             tStarCount = tStarCount - 1;
             pStarCount = pStarCount - 1;
-            //Need to add a pc randomizer link here before reroll method is run
+
         } else if (pCardImg[d].getAccessibleText().equals("Mario")) {
             tMarioCount = tMarioCount - 1;
             pMarioCount = pMarioCount - 1;
@@ -458,16 +485,48 @@ public class LuigiPokerController implements Initializable {
         if ((playerHand > luigiHand) || (playerHand == luigiHand && playerSuit > luigiSuit) || (playerHand == luigiHand && playerSuit == luigiSuit && playerLowSuit > luigiLowSuit)) {
             textWin.setVisible(true);
             textWinBase.setVisible(true);
+            if (luigiHand == 7) {
+                pool = pool * (16 + playerHand);
+
+            } else if (luigiHand == 6) {
+                pool = pool * (8 + playerHand);
+
+            } else if (luigiHand == 5) {
+                pool = pool * (6 + (playerHand / 2));
+
+            } else if (luigiHand == 4) {
+                pool = pool * (4 + (playerHand / 2));
+
+            } else if (luigiHand == 3) {
+                pool = pool * (3 + (playerHand / 4));
+
+            } else if (luigiHand == 2) {
+                pool = pool * (2 + (playerHand / 4));
+
+            }
+            Money = Money + pool;
+            lblWallet.setText("" + Money);
+            lblPool.setText("0");
+            lblPool.setText("+" + pool);
+
         }
         if ((playerHand < luigiHand) || (playerHand == luigiHand && playerSuit < luigiSuit) || (playerHand == luigiHand && playerSuit == luigiSuit && playerLowSuit < luigiLowSuit)) {
             textLose.setVisible(true);
             textLoseBase.setVisible(true);
+            lblPool.setText("0");
+
+            lblPool.setText("-" + pool);
         }
         if ((playerHand == luigiHand && playerSuit == luigiSuit && playerLowSuit == luigiLowSuit)) {
             textTie.setVisible(true);
             textTieBase.setVisible(true);
+            Money = Money + pool;
+            lblWallet.setText("" + Money);
+            lblPool.setText("0");
+            lblPool.setText("+0");
         }
-
+        MainApp.money = Money;
+        Reset.play();
     }
 
     @FXML
@@ -593,63 +652,116 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void drawClick(MouseEvent event) {
-        for (d = 0; d < 5; d++) {
-            if (pCardImg[d].getLayoutY() == 650) {
-                suitCheck();
-                repick = true;
-                i = 0;
-                pCardRandomizer();
-                pSuitCount();
+        if (live == true) {
+            for (d = 0; d < 5; d++) {
+                if (pCardImg[d].getLayoutY() == 650) {
+                    suitCheck();
+                    repick = true;
+                    i = 0;
+                    pCardRandomizer();
+                    pSuitCount();
 
-            } else {
-                d++;
+                } else {
+                    d++;
+                }
             }
+            live = false;
+            pHandFinal();
+
         }
-        pHandFinal();
+
     }
 
     @FXML
     void holdClick(MouseEvent event) {
-        pHandFinal();
+        if (live == true) {
+            live = false;
+            pHandFinal();
+
+        }
+
     }
 
     @FXML
     void betClick(MouseEvent event) {
-        if (wallet > 21) {
-            wallet = Integer.parseInt(lblWallet.getText());
-            pool = pool + 1;
-            lblPool.setText("" + pool);
-            wallet = wallet - 1;
-            lblWallet.setText("" + wallet);
-            reset();
-        } else {
-            reset();
+        if (live == true) {
+            if (pool < 10 && Money > 0) {
+                Money = Integer.parseInt(lblWallet.getText());
+                pool = pool + 1;
+                lblPool.setText("" + pool);
+                Money = Money - 1;
+                lblWallet.setText("" + Money);
+
+            }
+            if (Money == 1) {
+                //Send to game over screen
+            }
+
         }
 
-        //reset();
     }
 
     void theme() {
-        //for (int m = 0; m < 3; m++) { // Plays main theme 
-            MediaPlayer player;
-            player = new MediaPlayer((new Media(getClass().getResource("/Main Theme.mp3").toString())));
-            player.play();
-            //Timeline timeline = new Timeline(new KeyFrame(Duration.millis(121800), ae -> theme()));
-            
+        // Plays main theme 
+        MediaPlayer player;
+        player = new MediaPlayer((new Media(getClass().getResource("/Main Theme.mp3").toString())));
+        player.play();
+        //Theme.play();
 
-        //}
-       // theme();
+        player.setAutoPlay(true);
+        player.seek(Duration.ZERO);
+        player.setCycleCount(MediaPlayer.INDEFINITE);
+        MediaView view = new MediaView(player);
+
+        player.play();
+
     }
 
     @FXML
-    void video(){
-        //for (int v = 0; v < 3; v++){
-        vid = new MediaPlayer((new Media(getClass().getResource("/Casino.mp4").toString())));
-        media.setMediaPlayer(vid);
-        vid.setCycleCount(Timeline.INDEFINITE);
-        vid.play();
-        //}
-           // video();
+    void video() {
+        //Plays luigi video feed
+        int i = 0;
+        if (i == 0) {
+            vid = new MediaPlayer((new Media(getClass().getResource("/Casino.mp4").toString())));
+            media.setMediaPlayer(vid);
+            Vid.play();
+            vid.play();
+            i++;
+        }
+        if (i == 1) {
+            Vid.stop();
+            Vid.play();
+            vid.play();
+        }
+
+    }
+
+    void bet() { //flashes bet button
+        if (betPhase == false) {
+            imgBetY.setVisible(false);
+            betPhase = true;
+            oBet.play();
+        } else if (betPhase == true) {
+            imgBetY.setVisible(true);
+            betPhase = false;
+            Bet.play();
+        }
+
+    }
+    
+    void startdelay (){
+    theme();
+        video();
+        pCardRandomizer();
+        pSuitCount();
+        luigiHandRandomizer();
+        Vid.play();
+        Bet.play();
+    }
+    
+    @FXML
+    void exitClick(MouseEvent event) {
+     
     }
 
     @Override
@@ -660,14 +772,8 @@ public class LuigiPokerController implements Initializable {
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
 
-        // System.out.println(location.toString());
-        //System.out.println(this.getClass().getClass().getResource(MEDIA_URL).toExternalForm());
-        //mediaPlayer = new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
-        //media.setMediaPlayer(mediaPlayer);
-        //  media = new MediaView(mediaPlayer);
-        //mediaPlayer.setAutoPlay(true);
-        //media.setMediaPlayer(mediaPlayer);
-
+        Money = MainApp.money;
+        lblWallet.setText("" + Money);
         pTextBottom.setVisible(false);
         pTextTop.setVisible(false);
         lTextBottom.setVisible(false);
@@ -679,12 +785,13 @@ public class LuigiPokerController implements Initializable {
         textLose.setVisible(false);
         textTie.setVisible(false);
         imgBlankLuigi.setVisible(true);
-        //Opening ,method start
-        pCardRandomizer();
-        pSuitCount();
-        luigiHandRandomizer();
-        theme();
-        video();
+        live = true;
+        //Opening method start
+        pool = pool + 1;
+        Money = Money - 1;
+        lblPool.setText("" + pool);
+        lblWallet.setText("" + Money);
+        startDelay.play();
     }
 
 }

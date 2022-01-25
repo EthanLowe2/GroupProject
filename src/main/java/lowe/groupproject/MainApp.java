@@ -12,6 +12,7 @@ import java.io.IOException;
 public class MainApp extends Application {
     private static Stage stage;
     public static int DuckTime;
+    public static int money = 50;
     
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
