@@ -42,18 +42,26 @@ public class StartDuckController implements Initializable {
     }
     @FXML
     void btncontunie(ActionEvent event) throws IOException {
+        int time = Integer.parseInt(txtTime.getText());
         
-        if (!txtTime.getText().equals("0") && !txtTime.getText().equals("1") && !txtTime.getText().equals("2") && !txtTime.getText().equals("3")&& !txtTime.getText().equals("4")&& !txtTime.getText().equals("5")){
+        if (time >=5 && MainApp.money > time){
             int newtime = Integer.parseInt(txtTime.getText());
             MainApp.money = MainApp.money - newtime;
             MainApp.DuckTime = newtime;        
             MainApp.setRoot("Duck");
         }
-        if (txtTime.getText().equals("0") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3")|| txtTime.getText().equals("4")){
+        if (time <5){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
             alert.setContentText("You must buy at least 5 seconds");
+            alert.showAndWait();
+        }
+        if (MainApp.money <time){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("You do not have enough coins");
             alert.showAndWait();
         }
         

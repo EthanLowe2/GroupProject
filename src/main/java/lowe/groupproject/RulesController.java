@@ -58,6 +58,7 @@ public class RulesController implements Initializable {
         Disapeer();
         btnX.setVisible(true);
         imgExplanation.setVisible(true);
+        btnContinue.setVisible(true);
         imgExplanation.setImage(new Image(getClass().getResource("/DuckHuntExplane.PNG").toString()));
         Game = "Duck";
     }
@@ -67,6 +68,7 @@ public class RulesController implements Initializable {
         Disapeer();
         btnX.setVisible(true);
         imgExplanation.setVisible(true);
+        btnContinue.setVisible(true);
         imgExplanation.setImage(new Image(getClass().getResource("/HorseRacingRules.PNG").toString()));
         Game = "Horse";
     }
@@ -76,6 +78,7 @@ public class RulesController implements Initializable {
         Disapeer();
         btnX.setVisible(true);
         imgExplaneLui.setVisible(true);
+        btnContinue.setVisible(true);
         imgExplaneLui.setImage(new Image(getClass().getResource("/LuigiRules.PNG").toString()));
         Game = "Luigi";
     }
@@ -91,6 +94,7 @@ public class RulesController implements Initializable {
         imgExplanation.setVisible(false);
         btnX.setVisible(false);
         imgExplaneLui.setVisible(false);
+        btnContinue.setVisible(false);
     }
 
     void Disapeer() {
