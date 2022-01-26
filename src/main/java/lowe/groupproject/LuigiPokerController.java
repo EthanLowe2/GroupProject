@@ -731,6 +731,7 @@ public class LuigiPokerController implements Initializable {
 
     @FXML
     void exitClick(MouseEvent event) throws IOException { //return to game select
+        player.stop();
         MainApp.money = MainApp.money;
         setRoot("Rules", "Rules");
     }

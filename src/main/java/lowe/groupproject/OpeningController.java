@@ -35,7 +35,6 @@ public class OpeningController implements Initializable {
     @FXML
     void enterClick(ActionEvent event) throws IOException { // sends to Game select
         MainApp.money = 50;
-
         MainApp.setRoot("rules", "Galaxy Casino");
 
     }
