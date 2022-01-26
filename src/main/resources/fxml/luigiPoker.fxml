@@ -249,7 +249,7 @@
       </Label>
       <Pane layoutX="-6.0" layoutY="380.0" prefHeight="31.0" prefWidth="509.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="67.0" layoutX="432.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="exit" fitHeight="26.0" fitWidth="67.0" layoutX="432.0" layoutY="3.0" onMouseClicked="#exitClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../exit.png" />
                </image>

@@ -1,8 +1,13 @@
 /*
-Luigi poker
+Name; Gavin Gunn & Ethan Lowe
+Class; Grade 12 Com Studies
+Date; 26/01/22
+Assignment#; Final
+Description; group Project/Luigi Poker
  */
 package lowe.groupproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -12,17 +17,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import static lowe.groupproject.MainApp.setRoot;
 
 /**
  * FXML Controller class
@@ -32,17 +33,13 @@ import javafx.scene.layout.TilePane;
 public class LuigiPokerController implements Initializable {
 
     @FXML
-    private ImageView imgPointOrder, imgBetO, imgBetY, imgBoard, imgCoin1, imgCoin2, imgCoin3, imgCoin4, imgCoin5, imgDraw, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigi, exit;
+    private ImageView imgBetY, imgHold, imgPlayerC1, imgPlayerC2, imgPlayerC3, imgPlayerC4, imgPlayerC5, imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5, imgBlankLuigi;
 
-     
     @FXML
     private Label lblWallet, pTextBottom, pTextTop, textLose, textLoseBase, textWin, lTextTop, lTextBottom, lblPool, textTie, textWinBase, textTieBase;
 
     @FXML
     private MediaView media;
-
-    @FXML
-    private AnchorPane paneVideo;
 
     int pStarCount, pMarioCount, pLuigiCount, pFireFlowerCount, pMushroomCount, pCloudCount; //Ammount of each suit player holds
 
@@ -66,39 +63,32 @@ public class LuigiPokerController implements Initializable {
     boolean g = true;
     int H = 0, L = 0; //ints for setting luigi Card images
 
-    int d = 0;
-
-    int i = 0;
+    int d = 0, i = 0; // spare compare variables
 
     int psOne, psTwo; //int for checking high and low when two of a kind is present in players hand
 
-    int twoKind = 0;
-    int Money;
+    int twoKind = 0; // Used for testing two of a kind quantity
     int pool;
-    boolean live = true;
 
-    boolean fail = false;
-    boolean betPhase = false;
-    boolean spot = true;
-    boolean repick = false;
+    MediaPlayer player; // Player for Audio
+    MediaPlayer vid; // Player for Video
 
-    MediaPlayer vid;
+    boolean live = true, betPhase = false, fail = false, spot = true, repick = false;
 
-    ImageView pCardImg[];
-    ImageView lCardImg[];
-    Timeline startDelay = new Timeline(new KeyFrame(Duration.millis(3000), ae -> video()));
-    Timeline Vid = new Timeline(new KeyFrame(Duration.millis(66000), ae -> video()));
+    ImageView pCardImg[], lCardImg[];
+
+    Timeline Vid = new Timeline(new KeyFrame(Duration.millis(64000), ae -> video()));
     Timeline Reset = new Timeline(new KeyFrame(Duration.millis(5000), ae -> reset()));
     Timeline Bet = new Timeline(new KeyFrame(Duration.millis(1000), ae -> bet()));
     Timeline oBet = new Timeline(new KeyFrame(Duration.millis(1000), ae -> bet()));
 
-    void reset() {
+    void reset() { //Resets for next round
         Reset.stop();
         pool = 0;
-        Money--;
+        MainApp.money--;
         pool++;
         lblPool.setText("" + pool);
-        lblWallet.setText("" + Money);
+        lblWallet.setText("" + MainApp.money);
         d = 0;
         i = 0;
         live = true;
@@ -492,20 +482,20 @@ public class LuigiPokerController implements Initializable {
                 pool = pool * (8 + playerHand);
 
             } else if (luigiHand == 5) {
-                pool = pool * (6 + (playerHand / 2));
+                pool = pool * (6 + playerHand);
 
             } else if (luigiHand == 4) {
-                pool = pool * (4 + (playerHand / 2));
+                pool = pool * (4 + playerHand);
 
             } else if (luigiHand == 3) {
-                pool = pool * (3 + (playerHand / 4));
+                pool = pool * (3 + playerHand);
 
             } else if (luigiHand == 2) {
-                pool = pool * (2 + (playerHand / 4));
+                pool = pool * (2 + playerHand);
 
             }
-            Money = Money + pool;
-            lblWallet.setText("" + Money);
+            MainApp.money = MainApp.money + pool;
+            lblWallet.setText("" + MainApp.money);
             lblPool.setText("0");
             lblPool.setText("+" + pool);
 
@@ -520,12 +510,20 @@ public class LuigiPokerController implements Initializable {
         if ((playerHand == luigiHand && playerSuit == luigiSuit && playerLowSuit == luigiLowSuit)) {
             textTie.setVisible(true);
             textTieBase.setVisible(true);
-            Money = Money + pool;
-            lblWallet.setText("" + Money);
+            MainApp.money = MainApp.money + pool;
+            lblWallet.setText("" + MainApp.money);
             lblPool.setText("0");
             lblPool.setText("+0");
+            MainApp.money++;
+
         }
-        MainApp.money = Money;
+        if (MainApp.money == 1 || MainApp.money < 1) {
+            try {
+                setRoot("LostAllPoints", "Loser");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         Reset.play();
     }
 
@@ -651,7 +649,7 @@ public class LuigiPokerController implements Initializable {
     }
 
     @FXML
-    void drawClick(MouseEvent event) {
+    void drawClick(MouseEvent event) { // checks if cards are in draw position
         if (live == true) {
             for (d = 0; d < 5; d++) {
                 if (pCardImg[d].getLayoutY() == 650) {
@@ -673,7 +671,7 @@ public class LuigiPokerController implements Initializable {
     }
 
     @FXML
-    void holdClick(MouseEvent event) {
+    void holdClick(MouseEvent event) { // holds cards and goes to final
         if (live == true) {
             live = false;
             pHandFinal();
@@ -683,27 +681,22 @@ public class LuigiPokerController implements Initializable {
     }
 
     @FXML
-    void betClick(MouseEvent event) {
+    void betClick(MouseEvent event) { // Adds MainApp.money to the pool
         if (live == true) {
-            if (pool < 10 && Money > 0) {
-                Money = Integer.parseInt(lblWallet.getText());
+            if (pool < 10 && MainApp.money > 0) {
+                MainApp.money = Integer.parseInt(lblWallet.getText());
                 pool = pool + 1;
                 lblPool.setText("" + pool);
-                Money = Money - 1;
-                lblWallet.setText("" + Money);
+                MainApp.money--;
+                lblWallet.setText("" + MainApp.money);
 
-            }
-            if (Money == 1) {
-                //Send to game over screen
             }
 
         }
 
     }
 
-    void theme() {
-        // Plays main theme 
-        MediaPlayer player;
+    void theme() { // Plays main theme
         player = new MediaPlayer((new Media(getClass().getResource("/Main Theme.mp3").toString())));
         player.play();
         //Theme.play();
@@ -711,28 +704,15 @@ public class LuigiPokerController implements Initializable {
         player.setAutoPlay(true);
         player.seek(Duration.ZERO);
         player.setCycleCount(MediaPlayer.INDEFINITE);
-        MediaView view = new MediaView(player);
-
         player.play();
 
     }
 
     @FXML
-    void video() {
-        //Plays luigi video feed
-        int i = 0;
-        if (i == 0) {
-            vid = new MediaPlayer((new Media(getClass().getResource("/Casino.mp4").toString())));
-            media.setMediaPlayer(vid);
-            Vid.play();
-            vid.play();
-            i++;
-        }
-        if (i == 1) {
-            Vid.stop();
-            Vid.play();
-            vid.play();
-        }
+    void video() { // Plays main theme
+        vid = new MediaPlayer((new Media(getClass().getResource("/Casino.mp4").toString())));
+        media.setMediaPlayer(vid);
+        vid.play();
 
     }
 
@@ -748,20 +728,11 @@ public class LuigiPokerController implements Initializable {
         }
 
     }
-    
-    void startdelay (){
-    theme();
-        video();
-        pCardRandomizer();
-        pSuitCount();
-        luigiHandRandomizer();
-        Vid.play();
-        Bet.play();
-    }
-    
+
     @FXML
-    void exitClick(MouseEvent event) {
-     
+    void exitClick(MouseEvent event) throws IOException { //return to game select
+        MainApp.money = MainApp.money;
+        setRoot("Rules", "Rules");
     }
 
     @Override
@@ -772,8 +743,7 @@ public class LuigiPokerController implements Initializable {
         ImageView picArrayLuigi[] = {imgLuigiC1, imgLuigiC2, imgLuigiC3, imgLuigiC4, imgLuigiC5};
         lCardImg = picArrayLuigi;
 
-        Money = MainApp.money;
-        lblWallet.setText("" + Money);
+        lblWallet.setText("" + MainApp.money);
         pTextBottom.setVisible(false);
         pTextTop.setVisible(false);
         lTextBottom.setVisible(false);
@@ -786,12 +756,21 @@ public class LuigiPokerController implements Initializable {
         textTie.setVisible(false);
         imgBlankLuigi.setVisible(true);
         live = true;
+
         //Opening method start
         pool = pool + 1;
-        Money = Money - 1;
+        MainApp.money--;
         lblPool.setText("" + pool);
-        lblWallet.setText("" + Money);
-        startDelay.play();
+        lblWallet.setText("" + MainApp.money);
+        theme();
+        video();
+        Vid.setCycleCount(Timeline.INDEFINITE);
+        Vid.play();
+        pCardRandomizer();
+        pSuitCount();
+        luigiHandRandomizer();
+        Bet.play();
+
     }
 
 }

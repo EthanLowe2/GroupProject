@@ -1,5 +1,10 @@
 /*
- Opening controller
+ /*
+Name; Gavin Gunn & Ethan Lowe
+Class; Grade 12 Com Studies
+Date; 26/01/22
+Assignment#; Final
+Description; group Project/Opening
  */
 package lowe.groupproject;
 
@@ -9,45 +14,35 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.util.Duration;
-
 
 public class OpeningController implements Initializable {
-       
-    @FXML
-    private Button btnEnter;
-    
-    
+
+    MediaPlayer player;
+
     void theme() {
         // Plays main theme 
-        MediaPlayer player;
-        player = new MediaPlayer((new Media(getClass().getResource("/Opening.mp3").toString())));
-        player.play();
-        //Theme.play();
 
-        player.setAutoPlay(true);
-        player.seek(Duration.ZERO);
-        player.setCycleCount(MediaPlayer.INDEFINITE);
-        MediaView view = new MediaView(player);
-
-        player.play();
+        MediaPlayer Oplayer;
+        Oplayer = new MediaPlayer((new Media(getClass().getResource("/Opening.mp3").toString())));
+        Oplayer.play();
+        Oplayer.setAutoPlay(true);
+        Oplayer.play();
 
     }
-    
+
     @FXML
-    void enterClick(ActionEvent event) throws IOException {
-      MainApp.setRoot("luigiPoker","LuigiPoker");
+    void enterClick(ActionEvent event) throws IOException { // sends to Game select
+        MainApp.money = 50;
+
+        MainApp.setRoot("rules", "Galaxy Casino");
+
     }
 
-
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         theme();
-    }    
-    
+    }
+
 }
