@@ -18,9 +18,14 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
-/**
- * Ethan Lowe 12/13/2021 Duck Hunt
+/*
+Name; Gavin Gunn & Ethan Lowe
+Class; Grade 12 Com Studies
+Date; 26/01/22
+Assignment#; Final
+Description; group Project/DuckHunt
  */
+
 public class DuckController implements Initializable {
 
     @FXML
@@ -81,7 +86,7 @@ public class DuckController implements Initializable {
     }
 
     void Backbtn(ActionEvent event) throws IOException {
-        MainApp.setRoot("primary");
+        MainApp.setRoot("StartDuck");
     }
 
     @FXML
@@ -143,7 +148,10 @@ public class DuckController implements Initializable {
             lblCountContinue.setText("0");
         }else if (lblCountContinue.getText().equals("0") && Continue){
             try{
-             MainApp.setRoot("primary");   
+             int newpoints = Integer.parseInt(lblPoints.getText());
+             MainApp.money = MainApp.money +newpoints;
+             MainApp.setRoot("StartDuck");   
+            count.stop();
             }
             catch (Exception IOException){
             }
