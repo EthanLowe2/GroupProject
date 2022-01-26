@@ -38,32 +38,32 @@ import static lowe.groupproject.MainApp.scene;
 public class HorseRaceController implements Initializable {
 
     @FXML
-    private ImageView Horse1, Horse2, Horse3, Horse4, Horse5, imgPersonLeft,imgArrow1,imgArrow2,imgArrow3,imgArrow4,imgArrow5,imgPersonRight,imgCrowd,imgiPad,imgHorseiPad1,imgHorseiPad2,imgHorseiPad3,imgHorseiPad4,imgHorseiPad5;
+    private ImageView Horse1, Horse2, Horse3, Horse4, Horse5, imgPersonLeft, imgArrow1, imgArrow2, imgArrow3, imgArrow4, imgArrow5, imgPersonRight, imgCrowd, imgiPad, imgHorseiPad1, imgHorseiPad2, imgHorseiPad3, imgHorseiPad4, imgHorseiPad5;
 
     @FXML
-    private Button btnSitout,btnCurrent,btnClose,btnConfirm;
+    private Button btnSitout, btnCurrent, btnClose, btnConfirm;
 
     @FXML
-    private Label lblRound, lblWel,lblHorse,lblRacer,lblBettingamount1,lblBettingamount2,lblBettingamount3,lblBettingamount4,lblBettingamount5,lblHorseNumber1,lblHorseNumber2,lblHorseNumber3,lblHorseNumber4,lblHorseNumber5,lblHorseiPad1,lblHorseiPad2,lblHorseiPad3,lblHorseiPad4,lblHorseiPad5,lblRate1,lblRate2,lblRate3,lblRate4,lblRate5,lblRateiPad1,lblRateiPad2,lblRateiPad3,lblRateiPad4,lblRateiPad5,lblReturniPad1,lblReturniPad2,lblReturniPad3,lblReturniPad4,lblReturniPad5,lblBetting,lblFinish,lblDisplayWin,lblWinnerPoints;
+    private Label lblRound, lblWel, lblHorse, lblRacer, lblBettingamount1, lblBettingamount2, lblBettingamount3, lblBettingamount4, lblBettingamount5, lblHorseNumber1, lblHorseNumber2, lblHorseNumber3, lblHorseNumber4, lblHorseNumber5, lblHorseiPad1, lblHorseiPad2, lblHorseiPad3, lblHorseiPad4, lblHorseiPad5, lblRate1, lblRate2, lblRate3, lblRate4, lblRate5, lblRateiPad1, lblRateiPad2, lblRateiPad3, lblRateiPad4, lblRateiPad5, lblReturniPad1, lblReturniPad2, lblReturniPad3, lblReturniPad4, lblReturniPad5, lblBetting, lblFinish, lblDisplayWin, lblWinnerPoints;
 
     @FXML
-    private Ellipse shpcirText,shpcirText2;
+    private Ellipse shpcirText, shpcirText2;
 
     @FXML
-    private Polygon shptriText,shptriText2;
-    
+    private Polygon shptriText, shptriText2;
+
     @FXML
     private Line line;
-    
+
     @FXML
-    private TextField txtBetting1,txtBetting2,txtBetting3,txtBetting4,txtBetting5;
-    
+    private TextField txtBetting1, txtBetting2, txtBetting3, txtBetting4, txtBetting5;
+
     @FXML
     private Label lblMoney;
-    
+
     @FXML
-    private Button btnexit;        
-        
+    private Button btnexit;
+
     Timeline horsemove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveHorse()));
     double x1;
     double x2;
@@ -83,10 +83,9 @@ public class HorseRaceController implements Initializable {
     double Bet5;
     int currentbet;
     int currenthorse;
-    
+
     DecimalFormat myFormat = new DecimalFormat("0.00");
     DecimalFormat newFormat = new DecimalFormat("0");
-    
 
     void moveHorse() {
         Horse1.setTranslateX(Horse1.getTranslateX() + x1);
@@ -94,8 +93,8 @@ public class HorseRaceController implements Initializable {
         Horse3.setTranslateX(Horse3.getTranslateX() + x3);
         Horse4.setTranslateX(Horse4.getTranslateX() + x4);
         Horse5.setTranslateX(Horse5.getTranslateX() + x5);
-        if (collision(Horse1, lblFinish)){
-            int moneyEarn = (int) (currentbet*Bet1);
+        if (collision(Horse1, lblFinish)) {
+            int moneyEarn = (int) (currentbet * Bet1);
             horsemove.stop();
             lblDisplayWin.setText("HORSE 1 WINS");
             lblDisplayWin.setVisible(true);
@@ -104,28 +103,28 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            if (currenthorse == 1){
-                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 1) {
+                lblWinnerPoints.setText("YOU WON" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money + moneyEarn;
                 lblMoney.setText("" + MainApp.money);
             }
-            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
-                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 2 || currenthorse == 3 || currenthorse == 4 || currenthorse == 5) {
+                lblWinnerPoints.setText("YOU LOST" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
-            
+
             shpcirText.setVisible(true);
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
-             btnCurrent.setVisible(true);
+            btnCurrent.setVisible(true);
             btnSitout.setVisible(true);
         }
-        if (collision(Horse2, lblFinish)){
-            int moneyEarn = (int) (currentbet*Bet2);
+        if (collision(Horse2, lblFinish)) {
+            int moneyEarn = (int) (currentbet * Bet2);
             horsemove.stop();
             lblDisplayWin.setText("HORSE 2 WINS");
             lblDisplayWin.setVisible(true);
@@ -134,14 +133,14 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            if (currenthorse == 2){
-                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 2) {
+                lblWinnerPoints.setText("YOU WON" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money + moneyEarn;
                 lblMoney.setText("" + MainApp.money);
             }
-            if (currenthorse == 1 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
-                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 1 || currenthorse == 3 || currenthorse == 4 || currenthorse == 5) {
+                lblWinnerPoints.setText("YOU LOST" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
@@ -153,8 +152,8 @@ public class HorseRaceController implements Initializable {
             btnCurrent.setVisible(true);
             btnSitout.setVisible(true);
         }
-        if (collision(Horse3, lblFinish)){
-            int moneyEarn = (int) (currentbet*Bet3);
+        if (collision(Horse3, lblFinish)) {
+            int moneyEarn = (int) (currentbet * Bet3);
             horsemove.stop();
             lblDisplayWin.setText("HORSE 3 WINS");
             lblDisplayWin.setVisible(true);
@@ -163,14 +162,14 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            if (currenthorse == 3){
-                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 3) {
+                lblWinnerPoints.setText("YOU WON" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money + moneyEarn;
                 lblMoney.setText("" + MainApp.money);
             }
-            if (currenthorse == 2 || currenthorse == 1|| currenthorse == 4|| currenthorse == 5){
-                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 2 || currenthorse == 1 || currenthorse == 4 || currenthorse == 5) {
+                lblWinnerPoints.setText("YOU LOST" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
@@ -182,8 +181,8 @@ public class HorseRaceController implements Initializable {
             btnCurrent.setVisible(true);
             btnSitout.setVisible(true);
         }
-        if (collision(Horse4, lblFinish)){
-            int moneyEarn = (int) (currentbet*Bet4);
+        if (collision(Horse4, lblFinish)) {
+            int moneyEarn = (int) (currentbet * Bet4);
             horsemove.stop();
             lblDisplayWin.setText("HORSE 4 WINS");
             lblDisplayWin.setVisible(true);
@@ -192,14 +191,14 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            if (currenthorse ==4){
-                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 4) {
+                lblWinnerPoints.setText("YOU WON" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money + moneyEarn;
                 lblMoney.setText("" + MainApp.money);
             }
-            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 1|| currenthorse == 5){
-                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 2 || currenthorse == 3 || currenthorse == 1 || currenthorse == 5) {
+                lblWinnerPoints.setText("YOU LOST" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
@@ -208,11 +207,11 @@ public class HorseRaceController implements Initializable {
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
-             btnCurrent.setVisible(true);
+            btnCurrent.setVisible(true);
             btnSitout.setVisible(true);
         }
-        if (collision(Horse5, lblFinish)){
-            int moneyEarn = (int) (currentbet*Bet5);
+        if (collision(Horse5, lblFinish)) {
+            int moneyEarn = (int) (currentbet * Bet5);
             horsemove.stop();
             lblDisplayWin.setText("HORSE 5 WINS");
             lblDisplayWin.setVisible(true);
@@ -221,14 +220,14 @@ public class HorseRaceController implements Initializable {
             Horse3.setTranslateX(0);
             Horse4.setTranslateX(0);
             Horse5.setTranslateX(0);
-            if (currenthorse == 5){
-                lblWinnerPoints.setText("YOU WON" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 5) {
+                lblWinnerPoints.setText("YOU WON" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money + moneyEarn;
                 lblMoney.setText("" + MainApp.money);
             }
-            if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 1){
-                lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
+            if (currenthorse == 2 || currenthorse == 3 || currenthorse == 4 || currenthorse == 1) {
+                lblWinnerPoints.setText("YOU LOST" + " " + newFormat.format(moneyEarn) + " Coins");
                 lblWinnerPoints.setVisible(true);
                 MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
@@ -237,10 +236,10 @@ public class HorseRaceController implements Initializable {
             shptriText.setVisible(true);
             lblWel.setVisible(true);
             lblRound.setVisible(true);
-             btnCurrent.setVisible(true);
+            btnCurrent.setVisible(true);
             btnSitout.setVisible(true);
         }
-        
+
     }
 
     @FXML
@@ -248,17 +247,13 @@ public class HorseRaceController implements Initializable {
         if ((event.getCode() == KeyCode.SPACE)) {
             if (Horse1.getAccessibleText().equals("C")) {
                 x1 = x1 + 0.25;
-            }
-            else if (Horse2.getAccessibleText().equals("C")) {
+            } else if (Horse2.getAccessibleText().equals("C")) {
                 x2 = x2 + 0.25;
-            }
-            else if (Horse3.getAccessibleText().equals("C")) {
+            } else if (Horse3.getAccessibleText().equals("C")) {
                 x3 = x3 + 0.25;
-            }
-            else if (Horse4.getAccessibleText().equals("C")) {
+            } else if (Horse4.getAccessibleText().equals("C")) {
                 x4 = x4 + 0.25;
-            }
-            else if (Horse5.getAccessibleText().equals("C")) {
+            } else if (Horse5.getAccessibleText().equals("C")) {
                 x5 = x5 + 0.25;
             }
 
@@ -269,7 +264,7 @@ public class HorseRaceController implements Initializable {
     void btnexitA(ActionEvent event) throws IOException {
         MainApp.setRoot("Rules");
     }
-    
+
     @FXML
     void btnCloseA(ActionEvent event) {
         lblBettingamount1.setVisible(false);
@@ -327,39 +322,38 @@ public class HorseRaceController implements Initializable {
         lblRound.setVisible(true);
         lblWel.setVisible(true);
         shpcirText.setVisible(true);
-        shptriText.setVisible(true); 
+        shptriText.setVisible(true);
         btnCurrent.setVisible(true);
         btnSitout.setVisible(true);
         btnexit.setVisible(true);
     }
 
-
     @FXML
     void btnHorse(MouseEvent event) {
-        if (Ready == true){
-        imgArrow1.setVisible(false);
-        imgArrow2.setVisible(false);
-        imgArrow3.setVisible(false);
-        imgArrow4.setVisible(false);
-        imgArrow5.setVisible(false);
-        imgPersonRight.setVisible(false);
-        lblHorse.setVisible(false);
-        lblRacer.setVisible(false);
-        shpcirText2.setVisible(false);
-        shptriText2.setVisible(false);
-        ImageView img = (ImageView) event.getSource();
-        img.setAccessibleText("C");
-        x1 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
-        x2 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
-        x3 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
-        x4 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
-        x5 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
-        horsemove.setCycleCount(Timeline.INDEFINITE);
-        horsemove.play();
-        imgPersonLeft.setVisible(true);
+        if (Ready == true) {
+            imgArrow1.setVisible(false);
+            imgArrow2.setVisible(false);
+            imgArrow3.setVisible(false);
+            imgArrow4.setVisible(false);
+            imgArrow5.setVisible(false);
+            imgPersonRight.setVisible(false);
+            lblHorse.setVisible(false);
+            lblRacer.setVisible(false);
+            shpcirText2.setVisible(false);
+            shptriText2.setVisible(false);
+            ImageView img = (ImageView) event.getSource();
+            img.setAccessibleText("C");
+            x1 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+            x2 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+            x3 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+            x4 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+            x5 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+            horsemove.setCycleCount(Timeline.INDEFINITE);
+            horsemove.play();
+            imgPersonLeft.setVisible(true);
         }
     }
-    
+
     @FXML
     void btnCurrentA(ActionEvent event) {
         imgArrow1.setVisible(false);
@@ -439,13 +433,14 @@ public class HorseRaceController implements Initializable {
         txtBetting3.setText("");
         txtBetting4.setText("");
         txtBetting5.setText("");
-        lblRate1.setText(""+myFormat.format(Bet1));
-        lblRate2.setText(""+myFormat.format(Bet2));
-        lblRate3.setText(""+myFormat.format(Bet3));
-        lblRate4.setText(""+myFormat.format(Bet4));
-        lblRate5.setText(""+myFormat.format(Bet5));
-        
+        lblRate1.setText("" + myFormat.format(Bet1));
+        lblRate2.setText("" + myFormat.format(Bet2));
+        lblRate3.setText("" + myFormat.format(Bet3));
+        lblRate4.setText("" + myFormat.format(Bet4));
+        lblRate5.setText("" + myFormat.format(Bet5));
+
     }
+
     public boolean collision(ImageView block1, Label block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
@@ -463,8 +458,9 @@ public class HorseRaceController implements Initializable {
         x5 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
         horsemove.setCycleCount(Timeline.INDEFINITE);
         horsemove.play();
-        
+
     }
+
     @FXML
     void btnConfirmA(ActionEvent event) {
         lblBettingamount1.setVisible(false);
@@ -536,33 +532,74 @@ public class HorseRaceController implements Initializable {
         Horse4.setVisible(true);
         Horse5.setVisible(true);
         Ready = true;
-        if (!txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
-            currentbet = Integer.parseInt(txtBetting1.getText());
-            currenthorse = 1;
-            MainApp.money = MainApp.money - currentbet;
+        if (!txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")) {
+            txtBetting2.setText("0");
+            txtBetting3.setText("0");
+            txtBetting4.setText("0");
+            txtBetting5.setText("0");
+            int bettingamount1 = Integer.parseInt(txtBetting1.getText());
+            if (MainApp.money > bettingamount1) {
+                currentbet = Integer.parseInt(txtBetting1.getText());
+                currenthorse = 1;
+                MainApp.money = MainApp.money - currentbet;
+            }
+
         }
-        if (txtBetting1.getText().equals("") && !txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
-            currentbet = Integer.parseInt(txtBetting2.getText());
-            currenthorse = 2;
-            MainApp.money = MainApp.money - currentbet;
+        if (txtBetting1.getText().equals("") && !txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")) {
+            txtBetting1.setText("0");
+            txtBetting3.setText("0");
+            txtBetting4.setText("0");
+            txtBetting5.setText("0");
+            int bettingamount2 = Integer.parseInt(txtBetting2.getText());
+            if (MainApp.money > bettingamount2) {
+                currentbet = Integer.parseInt(txtBetting2.getText());
+                currenthorse = 2;
+                MainApp.money = MainApp.money - currentbet;
+            }
+
         }
-        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && !txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
-            currentbet = Integer.parseInt(txtBetting3.getText());
+        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && !txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && txtBetting5.getText().equals("")) {
+            txtBetting1.setText("0");
+            txtBetting2.setText("0");
+            txtBetting4.setText("0");
+            txtBetting5.setText("0");
+            int bettingamount3 = Integer.parseInt(txtBetting3.getText());
+            if (MainApp.money > bettingamount3) {
+                currentbet = Integer.parseInt(txtBetting3.getText());
             currenthorse = 3;
             MainApp.money = MainApp.money - currentbet;
+            }
+            
         }
-        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && !txtBetting4.getText().equals("") && txtBetting5.getText().equals("")){
-            currentbet = Integer.parseInt(txtBetting4.getText());
+        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && !txtBetting4.getText().equals("") && txtBetting5.getText().equals("")) {
+            txtBetting1.setText("0");
+            txtBetting2.setText("0");
+            txtBetting3.setText("0");
+            txtBetting5.setText("0");
+            int bettingamount4 = Integer.parseInt(txtBetting4.getText());
+            if (MainApp.money > bettingamount4) {
+                currentbet = Integer.parseInt(txtBetting4.getText());
             currenthorse = 4;
             MainApp.money = MainApp.money - currentbet;
+            }
+            
         }
-        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && !txtBetting5.getText().equals("")){
-            currentbet = Integer.parseInt(txtBetting5.getText());
+        if (txtBetting1.getText().equals("") && txtBetting2.getText().equals("") && txtBetting3.getText().equals("") && txtBetting4.getText().equals("") && !txtBetting5.getText().equals("")) {
+            txtBetting1.setText("0");
+            txtBetting2.setText("0");
+            txtBetting3.setText("0");
+            txtBetting4.setText("0");
+            int bettingamount5 = Integer.parseInt(txtBetting5.getText());
+            if (MainApp.money > bettingamount5) {
+                currentbet = Integer.parseInt(txtBetting5.getText());
             currenthorse = 5;
             MainApp.money = MainApp.money - currentbet;
+            }
+            
         }
         MainApp.scene.getRoot().requestFocus();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblMoney.setText("" + MainApp.money);
