@@ -37,6 +37,10 @@ public class StartDuckController implements Initializable {
     }
     
     @FXML
+    void btnX(ActionEvent event) throws IOException {
+        MainApp.setRoot("Rules");
+    }
+    @FXML
     void btncontunie(ActionEvent event) throws IOException {
         
         if (!txtTime.getText().equals("0") && !txtTime.getText().equals("1") && !txtTime.getText().equals("2") && !txtTime.getText().equals("3")&& !txtTime.getText().equals("4")&& !txtTime.getText().equals("5")){

@@ -7,6 +7,7 @@ Description; group Project/HorseRacing
  */
 package lowe.groupproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -59,7 +60,9 @@ public class HorseRaceController implements Initializable {
     
     @FXML
     private Label lblMoney;
-
+    
+    @FXML
+    private Button btnexit;        
         
     Timeline horsemove = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveHorse()));
     double x1;
@@ -80,6 +83,7 @@ public class HorseRaceController implements Initializable {
     double Bet5;
     int currentbet;
     int currenthorse;
+    
     DecimalFormat myFormat = new DecimalFormat("0.00");
     DecimalFormat newFormat = new DecimalFormat("0");
     
@@ -261,6 +265,10 @@ public class HorseRaceController implements Initializable {
         }
     }
 
+    @FXML
+    void btnexitA(ActionEvent event) throws IOException {
+        MainApp.setRoot("Rules");
+    }
     
     @FXML
     void btnCloseA(ActionEvent event) {
@@ -322,7 +330,7 @@ public class HorseRaceController implements Initializable {
         shptriText.setVisible(true); 
         btnCurrent.setVisible(true);
         btnSitout.setVisible(true);
-        
+        btnexit.setVisible(true);
     }
 
 
@@ -425,6 +433,7 @@ public class HorseRaceController implements Initializable {
         btnConfirm.setVisible(true);
         lblDisplayWin.setVisible(false);
         lblWinnerPoints.setVisible(false);
+        btnexit.setVisible(false);
         txtBetting1.setText("");
         txtBetting2.setText("");
         txtBetting3.setText("");
