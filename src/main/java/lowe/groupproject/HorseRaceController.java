@@ -67,7 +67,6 @@ public class HorseRaceController implements Initializable {
     int Rx4;
     int Rx5;
     boolean Ready;
-    double CurMoney;
     double Bet1;
     double Bet2;
     double Bet3;

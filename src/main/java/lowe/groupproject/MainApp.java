@@ -5,19 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 
 public class MainApp extends Application {
     private static Stage stage;
     public static int DuckTime;
-    public static int money = 50;
+    public static int money;
+    public static Scene scene;
     
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
-        setRoot("LuigiPoker","Opening");
+        setRoot("Opening","Galaxy Casino Entrance");
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -25,7 +25,7 @@ public class MainApp extends Application {
     }
 
     static void setRoot(String fxml, String title) throws IOException {
-        Scene scene = new Scene(loadFXML(fxml));
+        scene = new Scene(loadFXML(fxml));
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
