@@ -21,26 +21,28 @@ public class OpeningController implements Initializable {
     @FXML
     private Button btnEnter;
     
+    MediaPlayer player;
     
     void theme() {
         // Plays main theme 
-        MediaPlayer player;
+        
+        
+          MediaPlayer player;
         player = new MediaPlayer((new Media(getClass().getResource("/Opening.mp3").toString())));
-        player.play();
-        //Theme.play();
-
+        player.play(); 
         player.setAutoPlay(true);
-        player.seek(Duration.ZERO);
-        player.setCycleCount(MediaPlayer.INDEFINITE);
         MediaView view = new MediaView(player);
-
         player.play();
+        
 
     }
     
     @FXML
     void enterClick(ActionEvent event) throws IOException {
-      MainApp.setRoot("luigiPoker","LuigiPoker");
+      
+        
+        MainApp.setRoot("rules","Galaxy Casino");
+        
     }
 
 
