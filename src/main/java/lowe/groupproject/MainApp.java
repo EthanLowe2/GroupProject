@@ -11,13 +11,13 @@ import java.io.IOException;
 public class MainApp extends Application {
     private static Stage stage;
     public static int DuckTime;
-    public static int money = 50;
+    public static int money;
     public static Scene scene;
     
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
-        setRoot("Rules","Opening");
+        setRoot("opening","Galaxy Casino");
     }
 
     static void setRoot(String fxml) throws IOException {
