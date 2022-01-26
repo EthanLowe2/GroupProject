@@ -36,6 +36,6 @@
             <Image url="@../LuigiRules.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="btnContinue" layoutX="278.0" layoutY="471.0" mnemonicParsing="false" onAction="#btnContinueA" text="Continue" />
+      <Button fx:id="btnContinue" layoutX="278.0" layoutY="471.0" mnemonicParsing="false" onAction="#btnContinueA" text="Continue" visible="false" />
    </children>
 </AnchorPane>

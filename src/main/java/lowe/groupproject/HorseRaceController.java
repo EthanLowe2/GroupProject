@@ -113,7 +113,7 @@ public class HorseRaceController implements Initializable {
             if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
                 lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
                 lblWinnerPoints.setVisible(true);
-                MainApp.money = MainApp.money - moneyEarn;
+                MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
             
@@ -143,7 +143,7 @@ public class HorseRaceController implements Initializable {
             if (currenthorse == 1 || currenthorse == 3|| currenthorse == 4|| currenthorse == 5){
                 lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
                 lblWinnerPoints.setVisible(true);
-                MainApp.money = MainApp.money - moneyEarn;
+                MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
             shpcirText.setVisible(true);
@@ -172,7 +172,7 @@ public class HorseRaceController implements Initializable {
             if (currenthorse == 2 || currenthorse == 1|| currenthorse == 4|| currenthorse == 5){
                 lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
                 lblWinnerPoints.setVisible(true);
-                MainApp.money = MainApp.money - moneyEarn;
+                MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
             shpcirText.setVisible(true);
@@ -201,7 +201,7 @@ public class HorseRaceController implements Initializable {
             if (currenthorse == 2 || currenthorse == 3|| currenthorse == 1|| currenthorse == 5){
                 lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
                 lblWinnerPoints.setVisible(true);
-                MainApp.money = MainApp.money - moneyEarn;
+                MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
             shpcirText.setVisible(true);
@@ -230,7 +230,7 @@ public class HorseRaceController implements Initializable {
             if (currenthorse == 2 || currenthorse == 3|| currenthorse == 4|| currenthorse == 1){
                 lblWinnerPoints.setText("YOU LOST" + " " +newFormat.format(moneyEarn)+ " Coins");
                 lblWinnerPoints.setVisible(true);
-                MainApp.money = MainApp.money - moneyEarn;
+                MainApp.money = MainApp.money - currentbet;
                 lblMoney.setText("" + MainApp.money);
             }
             shpcirText.setVisible(true);
@@ -245,7 +245,7 @@ public class HorseRaceController implements Initializable {
 
     @FXML
     void pressSpace(KeyEvent event) {
-        if ((event.getCode() == KeyCode.A)) {
+        if ((event.getCode() == KeyCode.SPACE)) {
             if (Horse1.getAccessibleText().equals("C")) {
                 x1 = x1 + 0.25;
             }
@@ -452,6 +452,17 @@ public class HorseRaceController implements Initializable {
 
     @FXML
     void btnSitOutA(ActionEvent event) {
+        shpcirText.setVisible(false);
+        shptriText.setVisible(false);
+        lblWel.setVisible(false);
+        lblRound.setVisible(false);
+        x1 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+        x2 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+        x3 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+        x4 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+        x5 = ThreadLocalRandom.current().nextInt(3, 5 + 1);
+        horsemove.setCycleCount(Timeline.INDEFINITE);
+        horsemove.play();
         
     }
     @FXML
