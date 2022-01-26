@@ -5,6 +5,7 @@
  */
 package lowe.groupproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -38,18 +39,27 @@ public class RulesController implements Initializable {
 
     @FXML
     private ImageView imgHorse;
-    
+
     @FXML
     private ImageView imgExplanation;
     @FXML
     private Button btnX;
+
+    @FXML
+    private Button btnContinue;
+
+    @FXML
+    private ImageView imgExplaneLui;
     
+    String Game;
+
     @FXML
     void btnDuckA(ActionEvent event) {
         Disapeer();
         btnX.setVisible(true);
         imgExplanation.setVisible(true);
         imgExplanation.setImage(new Image(getClass().getResource("/DuckHuntExplane.PNG").toString()));
+        Game = "Duck";
     }
 
     @FXML
@@ -58,15 +68,18 @@ public class RulesController implements Initializable {
         btnX.setVisible(true);
         imgExplanation.setVisible(true);
         imgExplanation.setImage(new Image(getClass().getResource("/HorseRacingRules.PNG").toString()));
+        Game = "Horse";
     }
 
     @FXML
     void btnLuigiA(ActionEvent event) {
         Disapeer();
         btnX.setVisible(true);
-        imgExplanation.setVisible(true);
+        imgExplaneLui.setVisible(true);
+        imgExplaneLui.setImage(new Image(getClass().getResource("/LuigiRules.PNG").toString()));
+        Game = "Luigi";
     }
-    
+
     @FXML
     void btnXA(ActionEvent event) {
         imgDuck.setVisible(true);
@@ -77,9 +90,10 @@ public class RulesController implements Initializable {
         btnDuck.setVisible(true);
         imgExplanation.setVisible(false);
         btnX.setVisible(false);
+        imgExplaneLui.setVisible(false);
     }
-    
-    void Disapeer(){
+
+    void Disapeer() {
         imgDuck.setVisible(false);
         imgHorse.setVisible(false);
         imgLuigi.setVisible(false);
@@ -87,9 +101,23 @@ public class RulesController implements Initializable {
         btnHorse.setVisible(false);
         btnDuck.setVisible(false);
     }
+
+    @FXML
+    void btnContinueA(ActionEvent event) throws IOException {
+        if (Game.equals("Luigi")){
+            MainApp.setRoot("luigiPoker");
+        }
+        if (Game.equals("Horse")){
+            MainApp.setRoot("HorseRace");
+        }
+        if (Game.equals("Duck")){
+            MainApp.setRoot("StartDuck");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

@@ -8,11 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class StartDuckController implements Initializable {
     @FXML
     private TextField txtTime;
+    
+    @FXML
+    private Label lblMoney;
     
     @FXML
     void btnDown(ActionEvent event) {
@@ -37,6 +41,7 @@ public class StartDuckController implements Initializable {
         
         if (!txtTime.getText().equals("0") && !txtTime.getText().equals("1") && !txtTime.getText().equals("2") && !txtTime.getText().equals("3")&& !txtTime.getText().equals("4")&& !txtTime.getText().equals("5")){
             int newtime = Integer.parseInt(txtTime.getText());
+            MainApp.money = MainApp.money - newtime;
             MainApp.DuckTime = newtime;        
             MainApp.setRoot("Duck");
         }
@@ -53,6 +58,7 @@ public class StartDuckController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        lblMoney.setText("" + MainApp.money);
     }    
     
 }
